@@ -30,7 +30,6 @@ Primeiramente, para realizar a instalação do software E-foto, o usuário deve 
  %(que instalará os pacotes do apache2, onde Apache licencia um sistema de controle de versão de código aberto). Logo após execute o comando sudo apt-get install subversion libapache2-mod-svn subversion-tools libsvn-dev (que instalará o SVN e todas as dependências necessárias). Agora é preciso habilitar os módulos apache2 para o SVN funcionar e isso é feito com os comandos sudo a2enmod dav e sudo a2enmod dav\_svn. Então o usuário tem que reiniciar o Apache com o comando sudo service apache2 restart. O próximo passo é criar uma conta de usuário SVN que é feito com o comando sudo htpasswd -cm /etc/apache2/dav\_svn.passwd admin (nesse passo o usuário precisará fornecer sua senha de administrador). E o último passo de configuração do SVN é reiniciá-lo com o comando sudo systemctl restart apache2.service. 
  
 Com o SVN instalado e configurado, basta o usuário digitar no terminal o comando:
- 
 \begin{lstlisting}[language=bash]
  $ svn checkout https://svn.code.sf.net/p/e-foto/code
 \end{lstlisting}
@@ -48,7 +47,6 @@ Após a realização do download do código fonte do E-foto, o usuário deve fic
    	\item libglu1-mesa-dev
 \end{itemize}
 Cada pacote deve ser instalado com respectivamente com os seguintes comandos:	
-
 \begin{lstlisting}[language=bash]
 	$ sudo apt install libgdal-dev
 	$ sudo apt install build-essential
@@ -67,7 +65,6 @@ A instalação do Qt 5 via terminal deve ser feita através dos seguintes pacote
 	\item qt5-qmake
 \end{itemize}   
 Esses pacotes devem ser instalados através dos seguintes comandos do terminal:
-   
 \begin{lstlisting}[language=bash]
 	$ sudo apt install qt5-default
     $ sudo apt install -y qt5-qmake
@@ -77,7 +74,6 @@ Após esses procedimentos o usuário ja terá um ambiente de compilação pronto
     
 \subsection{Passo 4 - Compilar e executar o software E-foto}
 Para compilar e executar o código do E-foto via terminal, após a realização de todos os passos necessários, o usuário deve utilizar os seguintes comandos no terminal:
-   
 \begin{lstlisting}[language=bash]
    	$ cd diretório/
    	$ qmake e-foto.pro
