@@ -21,34 +21,73 @@ O E-foto é um software live para fotogrametria digital que é desenvolvido pelo
 \subsubsection{Passo 1 - Baixar código fonte}
 Primeiramente, para realizar a instalação do software E-foto, o usuário deve fazer o download do seu código fonte e para isso é necessário a instalação do subversion, se já não estiver instalado. Para tal, o usuário deve abrir o terminal do seu sistema Linux, que pode ser feito digitando terminal na barra de busca ao apertar a tecla do Windows no seu teclado ou pelo atalho do teclado \texttt{ctrl + alt + T}. Com o terminal aberto, o usuário começará a instalação do SVN com os comandos: 
 \begin{lstlisting}[language=bash]
-$ sudo apt update
-$ sudo apt install subversion
+	$ sudo apt update
+	$ sudo apt install subversion
 \end{lstlisting}
 % (que atualizará o gerenciador de pacotes)
  % e sudo apt install apache2 apache2-utils 
  %esses pacotes só são necessários se for criar um servidor svn, o que não é caso. Para baixar o e-foto, ou qualquer software por svn, basta instalar o subversion, sem o apache2. Veja em https://askubuntu.com/questions/258151/how-can-i-install-subversion-client-in-ubuntu
  %(que instalará os pacotes do apache2, onde Apache licencia um sistema de controle de versão de código aberto). Logo após execute o comando sudo apt-get install subversion libapache2-mod-svn subversion-tools libsvn-dev (que instalará o SVN e todas as dependências necessárias). Agora é preciso habilitar os módulos apache2 para o SVN funcionar e isso é feito com os comandos sudo a2enmod dav e sudo a2enmod dav\_svn. Então o usuário tem que reiniciar o Apache com o comando sudo service apache2 restart. O próximo passo é criar uma conta de usuário SVN que é feito com o comando sudo htpasswd -cm /etc/apache2/dav\_svn.passwd admin (nesse passo o usuário precisará fornecer sua senha de administrador). E o último passo de configuração do SVN é reiniciá-lo com o comando sudo systemctl restart apache2.service. 
  
- Com o SVN instalado e configurado, basta o usuário digitar no terminal o comando:
- \begin{lstlisting}[language=bash]
+Com o SVN instalado e configurado, basta o usuário digitar no terminal o comando:
+ 
+\begin{lstlisting}[language=bash]
  $ svn checkout https://svn.code.sf.net/p/e-foto/code
- \end{lstlisting}
- que o download de todo o código fonte do software E-foto será feito automaticamente.  %O que muda aqui? Não vi nenhuma diferença entre ubuntu18.04 e 20.04 depois deste ponto. Por que ele tem que escolher aqui se essa escolha não muda nada depois?
- %O e-foto só tem um código, tanto para windows, ubuntu 18 20, ou qualquer versão. A versão estável é compilável em qualquer sistema.
-  % nunca tive o tortoiseSVN. Ele não é necessãrio para baixar o efoto. O usuário precisa do subversion instalado. Mostre como instala o subversion. Tortoise é só uma interface gráfica para o svn. Qual o comando para isso?
-   %não se "adquire" softwware livre. Ele pode ser baixado e sempre é gratuito. De qualquer forma, tortoise não é necessário. Ele pode ser instalado usando apt. Não precisa passar nenhum site
-   % quais são os comandos? Você tem que fazer um be-a-bá. Você acha que seu pai conseguiria saber o que é opção de checkout? Dê exatament5e co comando necessário para baixar o efoto por svn
+\end{lstlisting}
+
+Com a utilização desse comando o download de todo o código fonte do software E-foto será feito automaticamente.  
     
+\subsubsection{Passo 2 - Instalar pacotes necessários à compilação}  
+Após a realização do download do código fonte do E-foto, o usuário deve ficar atento aos pacotes necessários em seu ambiente para que o software E-foto possa ser instalado e ter seu funcionamento sem erros. Para a instalação dos pacotes o usuário deve buscar abrir novamente o terminal. Os pacotes necessários para instalação do e-foto são:
+\begin{itemize}
+   	\item libgdal.dev
+   	\item build-essential
+   	\item libfontconfig1
+   	\item mesa-common-dev
+   	\item libx11-xcb-dev
+   	\item libglu1-mesa-dev
+\end{itemize}
+Cada pacote deve ser instalado com respectivamente com os seguintes comandos:	
+
+\begin{lstlisting}[language=bash]
+	$ sudo apt install libgdal-dev
+	$ sudo apt install build-essential
+	$ sudo apt install libfontconfig1
+	$ sudo apt install mesa-common-dev
+	$ sudo apt install libx11-xcb-dev 
+	$ sudo apt install libglu1-mesa-dev
+\end{lstlisting}				
+	
+O pacote libgdal.dev é o contém as funcionalidades da GDAL, onde GDAL é uma biblioteca de tradução para formatos geoespaciais. O pacote libfontconfig1 contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e o usuário deve instalar o driver XCB e o OpenGl através dos pacotes mesa-common-dev, libx11-xcb-dev e libglu1-mesa-dev. 
     
-  \subsubsection{Passo 2 - Instalar pacotes necessários à compilação}  %a partir daqui você edita e coloca os outros passos. O mesmo apra o windows. Dê exatamente cada comando necessário para instalar cada pacote.
-    Após a realização do download do código fonte do E-foto, o usuário deve ficar atento aos pacotes necessários em seu ambiente para que o software E-foto possa ser instalado e ter seu funcionamento sem erros. Para a instalação dos pacotes o usuário deve buscar abrir novamente o terminal. Os pacotes necessários para instalação do e-foto são:
-    \begin{itemize}
-    	\item libgdal.dev
-    	\item build-essential
-    	\item coloque cada pacote num item  até listar todos.
-    \end{itemize}
-    Um desses pacotes que são necessários é o libgdal.dev, que deve ser instalado a partir do seguinte comando no terminal %usar o mesmo esquema que fiz acima, para destacar os comandos, use apt e não apt-get. Cada comando uma linha.
-     sudo apt-get install libgdal-dev, onde GDAL é uma biblioteca de tradução para formatos geoespaciais, outros pacotes de grande importância são os de dependência do Qt 5 que são os pacotes build-essential que deve ser instalado com o comando sudo apt-get install build-essential no terminal, que proverá os compiladores necessários. O comando sudo apt-get install libfontconfig1 instalará um pacote que contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e para instalar o driver XCB e o OpenGl o usuário deve usar o comando sudo apt-get install mesa-common-dev e também o comando sudo apt-get install libx11-xcb-dev libglu1-mesa-dev . Por último os pacotes para a instalação do Qt 5 propriamente dito que são os pacotes qt5-default, instalado através do comando no terminal sudo apt-get install qt5-default, e qt5-qmake, instalado através do comando sudo apt-get install -y qt5-qmake, que permitirão o uso do Qt 5 e consequentemente a instalação do Software E-foto, para compilar e executar o código do E-foto via terminal, após a realização de todos os passos necessários, o usuário deve primeiramente percorrer, através do comando cd diretório/, até o diretório onde está o arquivo e-foto.pro (atualmente code/branches/e-foto-trunk-candidate) e usar o comando qmake e-foto.pro, depois o comando make e aguardar a compilação terminar. Por fim o usuário deve usar o comando ./build/bin/e-foto no terminal para executar o programa E-foto.
+\subsection{Passo 3 - Instalar os pacotes de instalação do Qt 5}   
+A instalação do Qt 5 via terminal deve ser feita através dos seguintes pacotes:
+\begin{itemize}
+	\item qt5-default
+	\item qt5-qmake
+\end{itemize}   
+Esses pacotes devem ser instalados através dos seguintes comandos do terminal:
+   
+\begin{lstlisting}[language=bash]
+	$ sudo apt install qt5-default
+    $ sudo apt install -y qt5-qmake
+\end{lstlisting}	
+    
+Após esses procedimentos o usuário ja terá um ambiente de compilação pronto para a instalação do E-foto, assim como o plataforma em que o mesmo foi desenvolvido.
+    
+\subsection{Passo 4 - Compilar e executar o software E-foto}
+Para compilar e executar o código do E-foto via terminal, após a realização de todos os passos necessários, o usuário deve utilizar os seguintes comandos no terminal:
+   
+\begin{lstlisting}[language=bash]
+   	$ cd diretório/
+   	$ qmake e-foto.pro
+   	$ make
+   	$ ./build/bin/e-foto
+\end{lstlisting}
+   
+O comando cd diretório/ servirá para o usuário percorrer o caminho até o diretório onde está o arquivo e-foto.pro (atualmente code/branches/e-foto-trunk-candidate), depois o qmake e o make irão realizar a compilação e gerar o executável do E-foto. Por fim o último comando irá executar o software E-foto.
+   
+   % Por último os pacotes para a instalação do Qt 5 propriamente dito que são os pacotes qt5-default, instalado através do comando no terminal sudo apt install qt5-default, e qt5-qmake, instalado através do comando sudo apt install -y qt5-qmake, que permitirão o uso do Qt 5 e consequentemente a instalação do Software E-foto
 
 \subsection{Em Sistemas Windows}
 
