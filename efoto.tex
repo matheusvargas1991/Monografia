@@ -11,7 +11,12 @@ O E-foto é um software live para fotogrametria digital que é desenvolvido pelo
 
 \section{Instalação do E-foto}
 \subsection{Em Sistemas Linux}
+% instalação usando o .deb disponibilizado pelo site.
+Nessa parte o usuário irá instalar o E-foto através do download e instalação a partir do arquivo .deb e para isso será necessário que ele acesse o web site http://www.efoto.eng.uerj.br/download/latest-version e realize o download da opção designada para Ubuntu na aba latest version.
+% será atualizado assim que a versão .deb do E-foto no qt 5 estiver pronta.
 \subsection{Em Sistemas Windows}
+% instalação usando o .msi disponibilizado pelo site
+Nessa parte o usuário irá instalar o E-foto através do download e instalação a partir do arquivo .msi e para isso será necessário que ele acesse o web site http://www.efoto.eng.uerj.br/download/latest-version e realize o download da opção designada para Windows na aba latest version. Normalmente o arquivo baixado vai para a pasta Downloads do computador do usuário e para realizar a instalação basta dar um clique duplo nesse arquivo, clicar na opção Next, ler e aceitar os termos do contrato e clicar novamente em Next, no próximo passo o usuário deve escolher o caminho onde o E-foto será instalado e depois o usuário deve clicar em Install e a instalação será realizada automaticamente. Após a instalação terminar basta manter a opção launch E-foto e clicar na opção Finish que o E-foto será executado, ou fechar o instalador e buscar o E-foto nos seus aplicativos instalados. Neste formato o instalador do E-foto instalará tudo o que é necessário para o funcionamento sem a necessidade de configurações adicionais.
 
 \subsection{Compilação do E-foto a partir dos fontes}
 \subsection{Em Sistemas Linux}
@@ -87,5 +92,22 @@ O comando cd diretório/ servirá para o usuário percorrer o caminho até o dir
 
 \subsection{Em Sistemas Windows}
 
-Em sistemas Windows o usuário deve se certificar de estar utilizando um sistema de 64-bits pois não existe versão do E-foto para sistemas de 32-bits, para realizar esse procedimento de verificação de qual é a versão do sistema que está sendo utilizada basta digitar "informações do sistema" no menu iniciar, no menu Resumo do Sistema existe a opção Versão do Sistema que dará ao usuário essa informação. O próximo passo é o download dos pacotes binários do Gdal no Windows que pode ser realizado através desse link https://repo.msys2.org/distrib/x86\_64/msys2-x86\_64-20200720.exe, % sublinhas têm quie ser colocadas depois do caracter de escape \, senão o latex tenta interpŕetar como comando
-  após a o download e da instalação do MSYS o usuário deve executar o que vai abrir o terminal do próprio MSYS que contém uma versão portada do gerenciador de pacotes Pacman, nessa ultima versão do Pacman deve ser digitado no terminal o código pacman -Syuu, que gerará um série de instruções a serem seguidas até que o usuário possa repetir o código e receber a mensagem de que nada necessita ser atualizado. Com o ambiente atualizado o usuário deve digitar o seguinte comando pacman -S mingw64/mingw-w64-x86\_64-gdal, que realizará finalmente o binário da GDAL. Após todo esse procedimento o usuário pode consultar no terminal do MSYS através do código gdalinfo --version se o gdal realmente foi instalado e a versão em que ele está disponível. Para seguir, o usuário deve possuir o Tortoise SVN que pode ser adquirido gratuitamente por esse link https://tortoisesvn.net/downloads.html, após a instalação do SVN o usuário deve buscar no programa a opção de SVN Checkout e no espaço para colar uma URL colocar https://svn.code.sf.net/p/e-foto/code, que deve gerar o download de todo o código fonte do E-foto. O Usuário deve, por ultimo, realizar o download do Qt 5 e do Qtcreator no website https://www.qt.io/download, deixando claro que na parte da instalação deve ser instalado apenas o mingw 64-bits, e o Qt 5 referente a esse sistema. Com os arquivos do código fonte do E-foto disponíveis o usuário deve procurar no caminho e-foto-code/branches/e-foto-trunk-candidate por um arquivo chamado e-foto.pro. Quando abrir o projeto no Qtcreator será necessário configurar o que deverá ser usado, começando pela escolha do kit que será usado que é o Qt 5 e o mingw 64-bits. Após o projeto estar aberto, o usuário deve ir na guia project e desmarcar a opção shadow build, e depois procurar na aba build a opção build E-foto, quando acabar a compilação é só buscar a opção Run e o E-foto vai abrir pronto para o uso.
+\subsubsection{Passo 1 - Baixar código fonte}
+ Para começara instalação do E-foto em sistemas Windows, o usuário deve realizar o download do código fonte do E-foto e para isso o melhor caminho é ulilizar o subversion, que no Windows pode ser feito através de um programa chamado TortoiseSVN que pode ser baixado gratuitamente por esse link https://tortoisesvn.net/downloads.html, após a instalação do TortoiseSVN, o usuário deve buscar no programa a opção de SVN Checkout, que pode ser encontrada ao clicar o botão direito do mouse na área de trabalho e no espaço para colar uma URL (primeira opção disponível) colocar https://svn.code.sf.net/p/e-foto/code, que deve gerar o download de todo o código fonte do E-foto.
+ 
+\subsubsection{Passo 2 - Download dos pacotes binários da Gdal no Windows} 
+ O próximo passo é o download dos pacotes binários do Gdal no Windows que pode ser realizado através desse link https://repo.msys2.org/distrib/x86\_64/msys2-x86\_64-20200720.exe, que realizará o download do MSYS, após a conclusão do download e da instalação do MSYS (que deve ser feita no drive C, que normalmente é o default) o usuário deve executar mSYS, o que vai abrir o terminal do próprio MSYS que contém uma versão portada do gerenciador de pacotes Pacman, nessa última versão do Pacman deve ser digitado no terminal o comando:
+ \begin{lstlisting}[language=bash]
+ 	$ pacman -Syuu
+ \end{lstlisting}
+
+ Esse comando irá gerar uma série de instruções a serem seguidas até que o usuário possa repetir o comando e receber a mensagem de que nada necessita ser atualizado. Com o ambiente atualizado, o usuário deve digitar o seguinte comando:
+  \begin{lstlisting}[language=bash]
+ 	$ pacman -S mingw64/mingw-w64-x86\_64-gdal
+ 	$ gdalinfo --version
+ \end{lstlisting}
+
+ Esses comandos que realizarão finalmente o download e instalação dos pacotes binários da GDAL e dirão qual versão que foi instalado, respectivamente. 
+ 
+ \subsubsection{Passo 3 - Baixar e configurar o Qt 5 e o Qt Creator}
+ Nessa estapa o usuário deve realizar o download do Qt 5 e do Qtcreator no website https://www.qt.io/download, deixando claro que na parte da instalação deve ser escolhido para instalar apenas as opções do mingw 64-bits, e o Qt 5 referente a esse sistema. Com os arquivos do código fonte do E-foto disponíveis o usuário deve procurar no caminho e-foto-code/branches/e-foto-trunk-candidate por um arquivo chamado e-foto.pro. Quando abrir o projeto no Qtcreator será necessário configurar o que deverá ser usado, começando pela escolha do kit que será usado que devem ser os mesmos escolhidos na instalação do Qt 5, ou seja, o mingw 64-bits e a versão do Qt referente a esse sistema. Após o projeto estar aberto, o usuário deve ir na guia project e desmarcar a opção shadow build, e depois procurar na aba build a opção build E-foto, quando acabar a compilação é só clicar na opção Run e o E-foto vai abrir pronto para o uso.
