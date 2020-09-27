@@ -8,15 +8,17 @@ Nesse capítulo será apresentado o software E-foto, suas funcionalidades e o qu
 \section{O que é o E-foto}
 
 O E-foto é um software live para fotogrametria digital que é desenvolvido pelo laboratório de fotogrametria da Universidade do Estado do Rio de Janeiro desde 2004 e tem como objetivo, além da criação de um software inteiramente funcional (uma estação fotogramétrica gratuita), levar aos alunos o conhecimento de forma gratuita sobre fotogrametria digital, sendo de forma didática ou ate mesmo na prática por meio de acesso ao código, uso da plataforma e até criação de novos módulos para o software. A fotogrametria é a obtenção de informações confiáveis por meio de imagens obtidas por sensores, sendo no caso da fotogrametria digital a entrada de dados são imagens digitais provenientes de máquinas digitais ou pela digitalização de imagens obtidas de forma analógica.
+%precisa detalhar muito mais. Precisa escrever o que é fotogrametria, explicar o uso do efoto. Use o livro do Nunes como base e as monografias anteriores para ver como é feito. Se copiar texto, não esqueça de colocar entre aspas e citar a fonte.
 
 \section{Instalação do E-foto}
 \subsection{Em Sistemas Linux}
 % instalação usando o .deb disponibilizado pelo site.
 Nessa parte o usuário irá instalar o E-foto através do download e instalação a partir do arquivo .deb e para isso será necessário que ele acesse o web site http://www.efoto.eng.uerj.br/download/latest-version e realize o download da opção designada para Ubuntu na aba latest version.
-% será atualizado assim que a versão .deb do E-foto no qt 5 estiver pronta.
+%detalhes, detalhes. Capture telas, coloque as imagens aqui. explique passo a passo. Ainda está muito genérico.
 \subsection{Em Sistemas Windows}
 % instalação usando o .msi disponibilizado pelo site
 Nessa parte o usuário irá instalar o E-foto através do download e instalação a partir do arquivo .msi e para isso será necessário que ele acesse o web site http://www.efoto.eng.uerj.br/download/latest-version e realize o download da opção designada para Windows na aba latest version. Normalmente o arquivo baixado vai para a pasta Downloads do computador do usuário e para realizar a instalação basta dar um clique duplo nesse arquivo, clicar na opção Next, ler e aceitar os termos do contrato e clicar novamente em Next, no próximo passo o usuário deve escolher o caminho onde o E-foto será instalado e depois o usuário deve clicar em Install e a instalação será realizada automaticamente. Após a instalação terminar basta manter a opção launch E-foto e clicar na opção Finish que o E-foto será executado, ou fechar o instalador e buscar o E-foto nos seus aplicativos instalados. Neste formato o instalador do E-foto instalará tudo o que é necessário para o funcionamento sem a necessidade de configurações adicionais.
+%detalhes, detalhes. Capture telas, coloque as imagens aqui. explique passo a passo. Ainda está muito genérico.
 
 \subsection{Compilação do E-foto a partir dos fontes}
 \subsection{Em Sistemas Linux}
@@ -72,7 +74,7 @@ A instalação do Qt 5 via terminal deve ser feita através dos seguintes pacote
 Esses pacotes devem ser instalados através dos seguintes comandos do terminal:
 \begin{lstlisting}[language=bash]
 	$ sudo apt install qt5-default
-    $ sudo apt install -y qt5-qmake
+	$ sudo apt install -y qt5-qmake
 \end{lstlisting}	
     
 Após esses procedimentos o usuário ja terá um ambiente de compilação pronto para a instalação do E-foto, assim como o plataforma em que o mesmo foi desenvolvido.
@@ -111,3 +113,4 @@ O comando cd diretório/ servirá para o usuário percorrer o caminho até o dir
  
  \subsubsection{Passo 3 - Baixar e configurar o Qt 5 e o Qt Creator}
  Nessa estapa o usuário deve realizar o download do Qt 5 e do Qtcreator no website https://www.qt.io/download, deixando claro que na parte da instalação deve ser escolhido para instalar apenas as opções do mingw 64-bits, e o Qt 5 referente a esse sistema. Com os arquivos do código fonte do E-foto disponíveis o usuário deve procurar no caminho e-foto-code/branches/e-foto-trunk-candidate por um arquivo chamado e-foto.pro. Quando abrir o projeto no Qtcreator será necessário configurar o que deverá ser usado, começando pela escolha do kit que será usado que devem ser os mesmos escolhidos na instalação do Qt 5, ou seja, o mingw 64-bits e a versão do Qt referente a esse sistema. Após o projeto estar aberto, o usuário deve ir na guia project e desmarcar a opção shadow build, e depois procurar na aba build a opção build E-foto, quando acabar a compilação é só clicar na opção Run e o E-foto vai abrir pronto para o uso.
+ %coloque capturas de tela aqui. Aliás, como o processo é gráfico, sempre use capturas de telas e não simplesmente texto.
