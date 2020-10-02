@@ -29,6 +29,73 @@ A importância da fotogrametria digital é justamente manter o avanço das ferra
 Apesar da tendência a automatizar todo o processo da fotogrametria proposto ideologicamente pela fotogrametria digital ainda existe o problema de que as superfícies são muito imperfeitas e possuem inúmeras descontinuidades que dificultam bastante a obtenção de valores razoáveis automaticamente mapeados então a participação humana se faz necessária mesmo que só para supervisionar a qualidade do que está sendo mapeado, tornando o trabalho semiautomático ou o mais automático possível tentando não comprometer a qualidade do processo.
 %precisa detalhar muito mais. Precisa escrever o que é fotogrametria, explicar o uso do efoto. Use o livro do Nunes como base e as monografias anteriores para ver como é feito. Se copiar texto, não esqueça de colocar entre aspas e citar a fonte.
 
+\section{Utilização do E-foto}
+\subsection{Iniciando um projeto}
+Ao executar a versão integrada do E-foto você encontrará as seguintes opções na primeira tela: Project, Execute e Help como pode ser visto na figura \ref{fig:efoto1}. Podendo usar o software para criar ou modificar um projeto de fotogrametria.Supondo que seja a primeira vez do usuário no E-foto a opção certa a ser seguida deve ser Project e em seguida selecionar a opção New ou ctrl + N para criar um projeto. Na próxima tela o usuário terá que nomear o seu projeto. Após isso, o usuário será levado a uma tela chamada Project Header onde ele terá que dar algumas informações sobre o projeto criado como o nome, a descrição, o criador, objetivos e contexto.
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/efoto1.jpg}
+	\caption{|Tela de abertura do E-foto} \label{fig:efoto1}
+\end{figure}
+
+\subsection{Modo edição e salvar o projeto}
+Para entrar no modo de edição basta buscar o botão Edit na parte embaixo da tela como é visto na figura \ref{fig:efoto1}, a indicação de que entrou no modo de edição é que as opções Project e Execute ficam desabilitadas (cor muda para cinza), para confirmaras mudanças feitas é só clicar OK e para cancelar é só clicar em Cancel.
+Para salvar o projeto o usuário deve ir ao menu principal e escolher a opção Save File AS ou pelo atalho do teclado Ctrl + a, para isso não pode estar no modo de edição e o projeto não será salvo em diretórios cujo nome tem acento, espaços ou caracteres especiais.
+A opção metadata (caminho do projeto, nome do arquivo, data de criação e data de modificação) só ficará disponível no Project Header após a primeira vez em que mesmo for salvo.
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/efoto2.jpg}
+	\caption{|Modo de edição do E-foto} \label{fig:efoto2}
+\end{figure}
+
+\subsection{Terrain}
+Na aba Terrain, o usuário deve preencher as seguintes informações: Maximum, minimum e mean Altitude que são relativos ao nível médio do mar; GRS (Sistema de referência geodésica) com as opções SIRGA2000, SAD69 (versão original) e WGS84; CPS (Sistema de projeção cartográfica) com a única opção sendo UTM; UTM Fuse: Seleção da zona UTM da área geográfica do projeto; Latitude: Medida em graus, minutos e segundos e com a indicação do hemisfério (norte ou sul); Longitude: Medida em graus, minutos e segundos e com a indicação do lado do meridiano de Greenwich (leste ou oeste). Essa aba é mostrada na figura \ref{fig:terrain}.
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/terrain.jpg}
+	\caption{|Aba Terrain do E-foto} \label{fig:terrain}
+\end{figure}
+
+\subsection{Sensor}
+A próxima aba a ser preenchida é a Sensor que fica embaixo do Terrain. O que deve ser feito com seguintes informações: Sensor id: identificação do sensor da câmera. Descrição do sensor da câmera. Tipo: Detector: pode ser Film (analógico) ou digital (CCD); Platform: Atualmente só tem disponível a opção Aerial; Geometry (geometria): frame; Energy Source (fonte de energia): natural e; Calculation Model: esse modelo de cálculo será usado para implementação da orientação interior das imagens. Camera Calibration Certificate Number: Dispatch date (data de lançamento); Expiration date (data de expiração). Sensor Parameters: deve ser derivado do certificado de calibração: Calibrated Focal Length (calibração do foco) e standard deviation (os desvios padrões), caso existam; Coordinates of Principal point (coordenadas do ponto principal): x0 e y0, e seus desvios padrões caso existam. Lens distortion coefficients (coeficiente de distorção das lentes): Radial Symmetric (radial simétrico): k0, k1, k2, k3 e seus respectivos desvios padrões, se disponíveis; Decentered (Descentrado): P1, P2 e seus respectivos desvios padrões, se disponíveis. Fiducial marks (Marcas fiduciais): se o modelo de cálculo for With Fiducial Marks: Number of fiducial marks (número de marcas fiduciais): sendo permitido 4 ou 8 marcas fiduciais; Coordenadas das marcas fiduciais a partir do certificado de calibração da câmera: xi, yi e seus respectivos desvios padrões se disponíveis. Sensor dimensions (dimensões do sensor): se o modelo de cálculo for With Fiducial Marks: Pixel size (tamanho do píxel); Sensor size (tamanho do sensor): definido em colunas e linhas. Xa: se o modelo de cálculo for With Fixed Parameters: a0, a1, a2, b0, b1 e b2. Essa aba é mostrada nas figuras \ref{fig:sensor1} e \ref{fig:sensor2}.
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/sensor1.jpg}
+	\caption{|Aba Sensor do E-foto} \label{fig:sensor1}
+\end{figure}
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/sensor2.jpg}
+	\caption{|Aba Sensor do E-foto} \label{fig:sensor2}
+\end{figure}
+
+\subsection{Flight}
+Agora a aba a ser preenchida deve ser a aba Flight que fica localizada logo abaixo da aba Sensor. Na tela de entrada o que deve ser preenchido são informações sobre o voo. Essas informações são: Flight ID (ID do voo), Producer’s name (nome dos produtores), description and date of execution (descrição e data da execução). Flight parameters (parâmetros do voo): Nominal flight height (altura nominal do voo): altitude do voo relativa ao nível do mar; Nominal scale of the imagery (escala nominal das imagens); Longitudinal overlap (sobreposição longitudinal): ao longo da linha do voo; Transversal overlap (sobreposição transversal): entre duas faixas do voo. Essa aba é mostrada na figura \ref{fig:flight}.
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/flight.jpg}
+	\caption{|Aba Flight do E-foto} \label{fig:flight}
+\end{figure}
+
+\subsection{Images}
+Agora o próximo passo é entrar com a imagem que será usada no projeto. Para fazer isso é preciso clicar na aba Images que fica abaixo da aba Flight no menu. Para adicionar a imagem é só clicar em Import images e selecionar as imagens que o usuário quer. Depois dessa seleção o E-foto vai perguntar se todas as imagens escolhidas têm as mesmas dimensões e qual é a sua resolução geométrica (o valor em DPI). Essa aba é mostrada na figura \ref{fig:image}. 
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/image.jpg}
+	\caption{|Aba Images do E-foto} \label{fig:image}
+\end{figure}
+
+\subsection{Points}
+Aba Points (fica abaixo da aba Images): nessa etapa o usuário deve preencher informações os pontos de controle do solo. Existem duas formas de adicionar os pontos, uma é adicionando pontos a partir de um arquivo .txt que para ser feito basta clicar na opção Import from txt e selecionar o mesmo e a outra forma é adicionando os pontos manualmente que se faz da seguinte forma: após clicar em New, o E-foto vai abrir uma tela para preencher dados sobre o ponto. Nessa tela, os dados a serem preenchidos são: Id of the point (Id do ponto), type of the point (tipo do ponto):control, check or photogrammetric (controle, verificação e fotogramétrica) and its ground coordinates (coordenadas do solo). Essa aba é mostrada na figura \ref{fig:points}. 
+
+\begin{figure}[!ht]{17cm}
+	\includegraphics[width=8cm, center]{figuras/points.jpg}
+	\caption{|Aba Points do E-foto} \label{fig:points}
+\end{figure}
+
+\subsection{Gerando um relatório}
+É possível gerar um relatório sobre o seu projeto fotogramétrico, nesse relatório o usuário que escolhe o que ele quer que esteja presente e ele é gerado em dois formatos: arquivo de texto e arquivo XML. E esse relatório pode ser feito a partir do atalho ctrl + j do teclado.
+
 \section{Instalação do E-foto}
 \subsection{Em Sistemas Linux}
 % instalação usando o .deb disponibilizado pelo site.
