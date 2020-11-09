@@ -3,5 +3,174 @@
 %================================================================
 \section{Requisitos do E-foto}
 %listar os pacotes necessários para a criação do pacote debian do efoto
+
+\subsection{Pacotes para a criação de um pacote de acordo com a política do Debian}
+
+Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote Debian de acordo com a política do Debian que deve ser criado num ambiente Debian unstable. 
+
+\begin{lstlisting}[language=bash]
+	$ apt update
+	$ apt install install autopkgtest blhc locales devscripts dh-make dput-ng git-buildpackage mc quilt spell tardiff tree
+\end{lstlisting}
+
+Pacote autopkgtest - enumera os testes do pacote e especifica suas dependências e requisitos.
+Pacote blhc - resolve possíveis problemas de hardening (processo de proteção) na compilação de pacotes que são escritos em C ou C++.
+Pacote locales - contém ferramentas para gerar definições de localidade de arquivos de origem, uma vez que quando um ambiente Debian unstable é criado configurações de localidade terão de ser feitas pois são reiniciadas.
+Pacote devscripts - contém diversos scripts que facilitam a vida do empacotador, pois seguem a política do Debian. 
+Pacote dh-make - realiza a automatização de diversas etapas do empacotamento, além de gerar o diretório debian parcialmente preenchido de acordo com a política do Debian, evitando assim uma série de erros que podem ser cometidos no processo de empacotamento de algum software.
+Pacote dput-ng - é uma ferramenta de upload de pacote Debian que fornece uma interface fácil de usar para instalações de hospedagem de arquivos de pacotes Debian. Ele permite que qualquer um que trabalhe com pacotes Debian carregue seu trabalho para um serviço remoto, incluindo ftp-master do Debian, mentors.debian.net, Launchpad ou outras facilidades de hospedagem de pacotes para mantenedores de pacotes Debian.
+Pacote git-buildpackage - ferramenta que facilita o manuseio de pacotes Debian em repositórios Git, uma vez que o git é uma forma de controle de versão tanto do software fornecido pelo upstream tanto como do próprio processo de empacotamento.
+Pacote mc - é um gerenciador de arquivos de tela inteira em modo texto. Ele usa uma interface de dois painéis e um subshell para execução de comandos. Inclui um editor interno com destaque de sintaxe e um visualizador interno com suporte para arquivos binários.
+Pacote quilt - é um gerenciador de patches, acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patche de mudança no empacotamento. 
+Pacote spell - é um programa de verificação ortográfica que imprime cada palavra incorreta em uma linha própria, muito bom para garantir que nenhum arquivo do pacote conterá erros ortográficos, é de muita importância que o empacotador utilize o mesmo após a finalização de cada arquivo para realizar a verificação, pois encontrará dificuldades de ter seu pacote aceito pelo Debian caso tenha erros de ortografia.
+Pacote tardiff - compara o conteúdo de dois tarballs e relata quaisquer diferenças encontradas entre eles. Seu uso é principalmente para gerentes de lançamento que podem usá-lo como uma ferramenta de controle de qualidade para garantir que nenhum arquivo tenha sido deixado de lado acidentalmente ou adicionado por engano. TarDiff suporta tarballs compactados, estatísticas de diferenças e supressão de mudanças GNU autotool. Esse pacote é muito usado pois como pode ser visto no manual do desenvolvedor do Debian, o código fonte do upstream geralmente vem no formato .tar.gz.
+Pacote tree - é um comando recursivo de listagem de diretórios que produz uma listagem de arquivos em formato de árvore. Muito usado para realizar a verificação de como ficou o empacotamento, se cada arquivo e diretório estão localizados em seu devido lugar. 
+Pacote lintian - é um sistema que disseca os pacotes Debian e relata bugs e violações de políticas. Ele contém verificações automatizadas para muitos aspectos da política do Debian, bem como algumas verificações para erros comuns. Ele usa um diretório de arquivo, denominado “laboratório”, no qual armazena informações sobre os pacotes que examina. Ele pode manter essas informações entre várias chamadas para evitar a repetição de operações caras de coleta de dados. Isso torna possível verificar o repositório Debian completo em busca de bugs, em um tempo razoável. Este pacote é útil para todas as pessoas que desejam verificar os pacotes Debian quanto à conformidade com a política Debian. Cada mantenedor do Debian deve verificar os pacotes com esta ferramenta antes de enviá-los.
+
 \section{Criação do Pacote Debian do E-foto}
 %mostrar um passo a passo
+
+\subsection{Processo de criação de uma jaula de ambiente Debian unstable}
+
+O primeiro passo para a criação de um pacote de acordo com a política do Debian é a obtenção de uma ambiente Debian unstable, já que todo empacotamento deve ser feito em um ambiente Debian unstable (com exceções de modificações ou correções em pacotes já publicados no Debian stable), pois o pacote vai entrar no Debian unstable, depois passar para experimental até poder ser classificado e utilizado no stable, mas para a realização desse empacotamento o empacotador não precisará usar uma versão unstable do Debian caso não seja sua preferência, será suficiente a criação de apenas um ambiente chamado também de jaula-sid que é justamente um diretório dentro do Debian stable em que o desenvolvedor estará confinado e que dentro dele estará o Debian unstable e essa jaula pode ser criada a partir dos comandos: 
+
+\begin{lstlisting}[language=bash]
+	$ apt update
+	$ mkdir /jaula-sid
+	$ debootstrap sid /jaula-sid/ftp.br.debian.org/debian
+	$ chroot /jaula-sid/
+	$ echo proc /proc proc defaults 0 0 >> etc/ fstab
+	$ wget http://bit.ly/bash-rc-txt
+	$ apt install autopkgtest blhc locales devscripts dh-make dput-ng git-buildpackage mc quilt spell tardiff tree lintian
+	$ apt-get clean
+	$ dpkg-configure locales tzdata
+\end{lstlisting}
+
+O comando mkdir /jaula-sid vai criar um diretório na raiz com o nome de jaula-sid. O nome sid vem do nome do Debian unstable. O comando debootstrap sid /jaula-sid/ftp.br.debian.org/debian realizará a instalação de um ambiente Debian unstable no diretório jaula-sid a partir do link indicado para download da imagem. O comando chroot /jaula-sid/ vai alterar a raíz para o diretório jaula-sid tornando-o isolado ou enjaulado de forma em que ele não conseguirá acessar nada fora dele mesmo. Com isso, o empacotador ficará a partir daqui utilizando só a versão unstable do Debian. É desse método que foi inspirado o nome jaula para o diretório de empacotamento. O comando echo proc /proc proc defaults 0 0 >> etc/ fstab  criará um dispositivo proc (é um diretório especial onde ficam todas as informações de depuração do kernel, também se encontram algumas configurações que habilitam e desabilitam o suporte à alguma coisa no kernel ) que vai garantir o funcionamento correto da jaula. O comando wget http://bit.ly/bash-rc-txt realizará o download de um arquivo de texto que contém uma série de comandos de configuração e ele deve ser colocado no /etc/bash.bashrc pois esse diretório é lido sempre que ocorre a troca de ambiente para o debian unstable. Para colocar esse arquivo no diretório como explicado acima é utilizado o comando cat bash-rc-txt >> /etc/bash.bashrc. O conteúdo do bash-rc-txt é o seguinte:
+
+alias ls='ls --color=auto' 
+alias tree='tree -aC' 
+alias debuildsa='dpkg-buildpackage -sa -ksua\_chave\_gpg' 
+alias uscan-check='uscan --verbose --report' 
+alias debcheckout='debcheckout -a' 
+export DEBFULLNAME="seu\_nome\_completo\_sem\_acentos/cedilha" 
+export DEBEMAIL="seu\_e-mail" export EDITOR=mcedit export LANG=C.UTF-8 export LANGUAGE=C.UTF-8 
+export LC\_ALL=C.UTF-8 
+export QUILT\_PATCHES=debian/patches 
+export PS1='JAULA-SID-\u@\\h:\\w\$ ' 
+mount /proc 
+
+Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve se manter o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o locales (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando dpkg-configure locales tzdata. Agora deve ser feita a configuração do lintian,e para realizar essa configuração deve ser criado o arquivo /root/.lintianrc e colocar no mesmo as seguintes linhas: 
+
+display-info = yes 
+pedantic = yes 
+display-experimental = yes 
+color = auto.
+
+E usar o comando apt-get clean para eliminar arquivos desnecessários e poupar espaço para iniciar o empacotamento.
+
+Agora a próxima etapa deve ser assinar o pacote com a chave GPG do empacotador, caso seja da escolha dele, da seguinte maneira: fora da jaula, exporte as suas chaves GPG (privada e pública) com os comandos:
+
+\begin{lstlisting}[language=bash]
+	$ gpg -a --export nr_da_chave > nr_da_chave.pub 
+	$ gpg -a --export-secret-keys nr\_da\_chave > nr\_da\_chave.key
+\end{lstlisting} 
+
+Mova os arquivos para dentro da jaula unstable, volte para a jaula com o comando chroot /jaula-sid/, importe as chaves e remova os arquivos. Para importar use os seguintes comandos: 
+
+\begin{lstlisting}[language=bash]
+	$ gpg --list-keys 
+	$ echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf 
+	$ gpg --import chave.key chave.pub 
+\end{lstlisting}
+
+Agora para habilitar a chave para assinatura de pacotes o empacotador deve editar o arquivo /etc/devscripts.conf e inserir o número completo da chave GPG na linha DEBSIGN\_KEYID, descomentando-a. Com isso, finalmente a jaula de trabalho está pronta e configurada para começar o empacotamento.
+
+\subsection{Começando o processo de empacotamento}
+
+%nomes de pacote só podem conter letras minúsculas, números e símbolos sendo que no mínimo dois algarismos.
+Primeiramente o empacotador deve instalar o programa e testá-lo para ver se ele realmente funciona e se vale a pena empacotá-lo.
+
+Após feito isso, para começar realmente o empacotamento, é preferível a criação dentro da jaula de trabalho um diretório com o nome genérico do pacote (por exemplo pkgnome-do-programa) através do comando:
+
+\begin{lstlisting}[language=bash]
+	$ mkdir pkgnome-do-programa 
+\end{lstlisting} 
+
+Dentro desse diretório a primeira etapa é obter o código fonte do upstream que de acordo com o manual de desenvolvedores deve estar preferencialmente no formato .tar.gz (tarball) e descompactá-lo. A política geral dos softwares do Debian prevê que para realizar o empacotamento, o diretório raiz deve ser nomeado da seguinte forma: nomedoprograma-numerodeversão. Logo após isso, o empacotador deve preferencialmente verificar o licenciamento do programa e isso pode ser feito de duas formas distintas, uma é através do comando: lincensecheck * (que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando egrep -sriA25 '(public dom|copyright)' | less (que toda vez em que as expressões public dom ou copyright forem citadas nos arquivos-fontes as 25 linhas posteriores serão mostradas, assim mostrando o que o autor do código explicitou sobre a licença). Esse procedimento deve ser feito com calma e de maneira bem minuciosa para novos pacotes pois o Debian não aceita nenhum mínimo detalhe que comprometa o fato de o código ser livre.
+O Próximo passo será um dos mais importantes pois é a "debianização" do código fonte (a criação do diretório Debian dentro do código junto com seus arquivos necessários de acordo com a política do Debian) e isso é feito através do comando:
+
+\begin{lstlisting}[language=bash]
+	$ dh_make -f ../.tar.gz -c <licença> 
+\end{lstlisting} 
+
+\subsection{Modificando o conteúdo do diretório Debian do pacote}
+
+Os primeiros arquivos do diretório debian a ser modificados são os que são obrigatórios para o empacotamento: Changelog, Control, Copyright e Rules. Devido a utilização do pacote dh-make, esses arquivos já virão previamente preenchidos com algumas informações que deverão ser modificadas de acordo com o conteúdo do software que está sendo empacotado.
+
+Começando pela edição do debian/changelog que no caso de ser a primeira vez em que o software está sendo empacotado, é só alterar o modelo para se adequar ao seu pacote com informações básicas (alterar de unstable para experimental em caso de ser o primeiro empacotamento do programa, por exemplo), mas futuramente toda modificação no pacote que vai gerar uma revisão pelo Debian deve ser documentada nesse arquivo. 
+
+O segundo a ser editado será o debian/control que também já vem com o formato preenchido sendo necessário só alterar os valores de acordo com o programa, e esses valores são divididos em dois parágrafos, o superior trata do código fonte e o inferior trata do binário que será gerado.
+
+Sobre os campos do fonte (parágrafo superior):
+Source: nome do programa.
+Section: é o nome da seção em que se enquadra a funcionalidade do programa que será empacotado, essas funções e suas descrições podem ser vistas no site https://packages.debian.org/unstable/.
+Priority: prioridade em que o programa deve ser instalado no Debian, serve para controlar quais pacotes são instalados junto com o Debian em determinadas configurações e essa prioridade deve ser determinada apenas pela funcionalidade que o programa fornece ao usuário.
+Maintainer: nome do mantenedor do pacote, geralmente junto com e-mail.
+Build-depends: são os pacotes que tem que ser obrigatoriamente instalados para que instalação do programa, como os pacotes são para desenvolvimento, geralmente eles têm -dev no final. O pacote que necessariamente o empacotador está usando é o debhelper-compat (=13).
+Standards-version: A versão mais recente dos padrões (o manual de política e textos associados) com os quais o pacote está em conformidade. 
+Homepage: É a página da internet onde o código fonte pode ser obtido.
+
+Sobre o binário (parágrafo inferior):
+Package: nome do pacote que será gerado.
+Architecture: aqui deve ser especificado pra qual tipo de arquitetura o empacotador quer que seu pacote seja gerado. Geralmente são any (programas em linguagem compilada) ou all (programas em linguagem interpretada), mas caso o programa só funcione em uma arquitetura específica, ela deve ser especificada aqui nesse campo.
+Depends: são auxiliares que na construção do binário busca dependências do código que não foram especificadas. 
+Description: é dividida em duas partes, a descrição curta e a descrição longa.
+A descrição curta deve ser rápida e objetiva com as funcionalidades do programa. Já a longa geralmente é copiada da descrição do autor que é dada na homepage do upstream porém deve ser formatada de acordo com a politica Debian, toda linha tem que ser indentada com um espaço em branco, o comprimento de cada linha é de no máximo 80, caso exista uma linha em branco entre parágrafos ela deve ser preenchida com um ponto final e geralmente é preferível que esse texto seja escrito de maneira impessoal.
+
+Existem outros campos possíveis mas esses listados são os obrigatórios e necessários, esses outros campos podem ser vistos nesse site https://www.debian.org/doc/debian-policy/ch-controlfields.html. 
+
+O próximo a ser preenchido é o debian/copyright com os seguintes campos:
+Format: já vem preenchido com o formato que está sendo seguido para a realização do  copyright.
+Upstream-Name: Nome do programa.
+Upstream-Contact: Geralmente é colocado aqui o endereço da página do upstream usada para o envio de bugs.
+Source: Homepage do usptream.
+Cada arquivo que tiver uma licença diferente deve ser especificado com esses 3 campos:
+Files: nome do arquivo.
+Copyright: autor e data.
+License: nome da licença.
+Geralmente todo código tem uma especificação de lincença  para o código fonte e outra para o diretório debian no caso de o autor do programa e o autor do empacotamento sejam diferentes. Ou pode ser colocados o mesmo para que os códigos possam ser misturados.
+License: Explicação completa feita sobre o que diz a licença. 
+
+Agora será editado o campo debian/rules. Este campo já vem comentado com algumas sugestões de preenchimento. Devem ser deixadas as seguintes linhas:
+#!/usr/bin/make -f
+#export DH\_VERBOSE = 1
+#export DEB\_BUILD\_MAINT\_OPTIONS = hardening=+all
+#export DEB\_CFLAGS\_MAINT\_APPEND = -Wall -pedantic
+#export DEB\_LDFLAGS\_MAINT\_APPEND = -Wl, --as-needed
+
+%:
+dh $@
+
+O restante deve ser apagado e cada linha de comentário deixada só pode ser descomentada em caso de necessidades especiais do programa que serão sanadas com as mesmas. O arquivo rules é o makefile dentro do diretório debian do pacote e é nele que devem ser especificados quaisquer peculiaridades da construção do programa, para que o pacote possa ser montado de maneira bem-feita. Ao final do empacotamento, após a realização dos testes do pacote, essa linhas de comentários que não tiveram utilidade devem ser apagadas.
+
+Por último será preenchido o debian/watch com as seguintes informações:
+Version: a versão do watch que está sendo usada (deve ser usada sempre a mais atual).
+As próximas linhas devem ser preenchidas com links onde devem ser procuradas possíveis atualizações feitas pelo upstream no código fonte. Geralmente são preenchidos com links de sites usados para o controle de versão de programas ou códigos como o Github ou Sourceforge.
+É importante deixar claro que pra realizar o empacotamento o empacotador deve apagar todo lixo, comentário e coisas desnecessárias. O pacote deve ser o mais limpo e leve possível.
+
+\subsection{Construção do pacote}
+
+Após todas as etapas citadas anteriormente, é hora de usar o comando debuild no diretório raiz e esperar a compilação do programa e criação do pacote. Quando acabar muito possivelmente aparecerão alguns erros lintian que deverão ser corrigidos para que o pacote esteja de acordo com a política do Debian, a maneira mais fácil de corrigir esses erros lintians é acessando o site https://lintian.debian.org/tags.html e procurar a explicação do erro que está acontecendo e como resolvê-lo. Quando o seu pacote estiver sem erros lintians, ou só com lintians que não são solucionáveis (não podendo ser lintians de erro ou algo relacionado a obrigações do pacote ou empacotador) chegou a hora de realizar as checagens finais e começar a buscar as maneiras de subir esse pacote para o Debian.
+
+\subsection{Testes finais do pacote}
+
+Logo após a construção do pacote e resolução dos erros lintians, o empacotador deve realizar mais alguns testes antes de enviar seu pacote para o Debian, primeiramente ele deve passar o comando spell em todos os arquivos que ele mesmo criou do diretório Debian, depois ele deve usar o comando tree nomedopacote dentro do diretório Debian do pacote para verificar como foi feita a construção do mesmo, ou seja, se cada arquivo foi para o lugar em que deveria após o empacotamento. E nessa verificação é importante perceber se o dh\_compress fez seu papel corretamente, já que ele é uma ferramenta do debhelper que comprime todo arquivo com tamanho maior que 4k (com a exceção de arquivos copyright, .html e outros arquivos web, arquivos de imagens, e arquivos que aparentam já estarem comprimidos com base nas suas extensões), essa compressão de arquivos é feita de acordo com a política do Debian e o dh\_compress é chamado automaticamente junto com o comando debuild usado para a construção do pacote. Após essa etapa o empacotador deve verificar novamente todos os arquivos do diretório Debian e usar o comando debuild duas vezes para ter certeza de que não ocorrerá nenhum novo erro na construção do pacote. A ultima etapa é usar o cowbuilder para testar a construção do pacote em uma jaula unstable limpa e isso é feito através dos seguintes comandos:
+
+\begin{lstlisting}[language=bash]
+	$ cowbuilder create
+	$ cowbuilder update
+	$cowbuilder build arquivo.dsc
+\end{lstlisting} 
+
+Esses comandos vão criar o ambiente Debian unstable limpo, atualizar o mesmo e testar a construção do pacote nesse ambiente respectivamente. Esse teste é de total importância pois durante o processo de empacotamento pode ser gerada uma poluição na jaula que acabará influenciando no resultado final, e com esse teste em um ambiente limpo ocorre uma simulação de como o pacote será construído e testado nos servidores do Debian quando for feito seu upload.
