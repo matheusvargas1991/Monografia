@@ -13,18 +13,33 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 	$ apt install install autopkgtest blhc locales devscripts dh-make dput-ng git-buildpackage mc quilt spell tardiff tree
 \end{lstlisting}
 
-Pacote autopkgtest - enumera os testes do pacote e especifica suas dependências e requisitos.
-Pacote blhc - resolve possíveis problemas de hardening (processo de proteção) na compilação de pacotes que são escritos em C ou C++.
+\begin{description}
+	\item[Pacote autopkgtest] - enumera os testes do pacote e especifica suas dependências e requisitos.
+	\item[Pacote blhc] - resolve possíveis problemas de hardening (processo de proteção) na compilação de pacotes que são escritos em C ou C++.
+\end{description}
+ 
+%coloque o restante segundo o esquema acima
+ 
+
 Pacote locales - contém ferramentas para gerar definições de localidade de arquivos de origem, uma vez que quando um ambiente Debian unstable é criado configurações de localidade terão de ser feitas pois são reiniciadas.
+
 Pacote devscripts - contém diversos scripts que facilitam a vida do empacotador, pois seguem a política do Debian. 
+
 Pacote dh-make - realiza a automatização de diversas etapas do empacotamento, além de gerar o diretório debian parcialmente preenchido de acordo com a política do Debian, evitando assim uma série de erros que podem ser cometidos no processo de empacotamento de algum software.
+
 Pacote dput-ng - é uma ferramenta de upload de pacote Debian que fornece uma interface fácil de usar para instalações de hospedagem de arquivos de pacotes Debian. Ele permite que qualquer um que trabalhe com pacotes Debian carregue seu trabalho para um serviço remoto, incluindo ftp-master do Debian, mentors.debian.net, Launchpad ou outras facilidades de hospedagem de pacotes para mantenedores de pacotes Debian.
+
 Pacote git-buildpackage - ferramenta que facilita o manuseio de pacotes Debian em repositórios Git, uma vez que o git é uma forma de controle de versão tanto do software fornecido pelo upstream tanto como do próprio processo de empacotamento.
+
 Pacote mc - é um gerenciador de arquivos de tela inteira em modo texto. Ele usa uma interface de dois painéis e um subshell para execução de comandos. Inclui um editor interno com destaque de sintaxe e um visualizador interno com suporte para arquivos binários.
+
 Pacote quilt - é um gerenciador de patches, acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patche de mudança no empacotamento. 
 Pacote spell - é um programa de verificação ortográfica que imprime cada palavra incorreta em uma linha própria, muito bom para garantir que nenhum arquivo do pacote conterá erros ortográficos, é de muita importância que o empacotador utilize o mesmo após a finalização de cada arquivo para realizar a verificação, pois encontrará dificuldades de ter seu pacote aceito pelo Debian caso tenha erros de ortografia.
+
 Pacote tardiff - compara o conteúdo de dois tarballs e relata quaisquer diferenças encontradas entre eles. Seu uso é principalmente para gerentes de lançamento que podem usá-lo como uma ferramenta de controle de qualidade para garantir que nenhum arquivo tenha sido deixado de lado acidentalmente ou adicionado por engano. TarDiff suporta tarballs compactados, estatísticas de diferenças e supressão de mudanças GNU autotool. Esse pacote é muito usado pois como pode ser visto no manual do desenvolvedor do Debian, o código fonte do upstream geralmente vem no formato .tar.gz.
+
 Pacote tree - é um comando recursivo de listagem de diretórios que produz uma listagem de arquivos em formato de árvore. Muito usado para realizar a verificação de como ficou o empacotamento, se cada arquivo e diretório estão localizados em seu devido lugar. 
+
 Pacote lintian - é um sistema que disseca os pacotes Debian e relata bugs e violações de políticas. Ele contém verificações automatizadas para muitos aspectos da política do Debian, bem como algumas verificações para erros comuns. Ele usa um diretório de arquivo, denominado “laboratório”, no qual armazena informações sobre os pacotes que examina. Ele pode manter essas informações entre várias chamadas para evitar a repetição de operações caras de coleta de dados. Isso torna possível verificar o repositório Debian completo em busca de bugs, em um tempo razoável. Este pacote é útil para todas as pessoas que desejam verificar os pacotes Debian quanto à conformidade com a política Debian. Cada mantenedor do Debian deve verificar os pacotes com esta ferramenta antes de enviá-los.
 
 \section{Criação do Pacote Debian do E-foto}
@@ -60,7 +75,7 @@ export QUILT\_PATCHES=debian/patches
 export PS1='JAULA-SID-\u@\\h:\\w\$ ' 
 mount /proc 
 
-Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve se manter o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o locales (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando dpkg-configure locales tzdata. Agora deve ser feita a configuração do lintian,e para realizar essa configuração deve ser criado o arquivo /root/.lintianrc e colocar no mesmo as seguintes linhas: 
+Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve se manter o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o locales (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/\_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando dpkg-configure locales tzdata. Agora deve ser feita a configuração do lintian,e para realizar essa configuração deve ser criado o arquivo /root/.lintianrc e colocar no mesmo as seguintes linhas: 
 
 display-info = yes 
 pedantic = yes 
@@ -143,6 +158,7 @@ Geralmente todo código tem uma especificação de lincença  para o código fon
 License: Explicação completa feita sobre o que diz a licença. 
 
 Agora será editado o campo debian/rules. Este campo já vem comentado com algumas sugestões de preenchimento. Devem ser deixadas as seguintes linhas:
+\begin{verbatim}
 #!/usr/bin/make -f
 #export DH\_VERBOSE = 1
 #export DEB\_BUILD\_MAINT\_OPTIONS = hardening=+all
@@ -152,6 +168,7 @@ Agora será editado o campo debian/rules. Este campo já vem comentado com algum
 %:
 dh $@
 
+\end{verbatim}
 O restante deve ser apagado e cada linha de comentário deixada só pode ser descomentada em caso de necessidades especiais do programa que serão sanadas com as mesmas. O arquivo rules é o makefile dentro do diretório debian do pacote e é nele que devem ser especificados quaisquer peculiaridades da construção do programa, para que o pacote possa ser montado de maneira bem-feita. Ao final do empacotamento, após a realização dos testes do pacote, essa linhas de comentários que não tiveram utilidade devem ser apagadas.
 
 Por último será preenchido o debian/watch com as seguintes informações:
