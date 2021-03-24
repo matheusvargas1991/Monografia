@@ -2,31 +2,31 @@
 \chapter{Debian-GIS}
 %================================================================
 \section{O que é o Debian-GIS}
-
+% falta revisar
 O \textbf{Debian-GIS} é um \textit{Debian Pure Blend}, o que significa ser uma parte do Debian nos quais seus pacotes estão agrupados e disponíveis para um determinado grupo de usuários que possuem necessidades especiais, tornando desnecessário o acesso a todos os pacotes Debian disponíveis. O Debian-GIS tem como objetivo atender os usuários interessados em um Sistema de Informação Geográfica, ou seja, visa satisfazer as necessidades de usuários que trabalham com mapas, sensoriamento remoto e observação da Terra e dispõe de uma lista de programas GIS selecionados para o Debian.
 A equipe Debian-GIS também atua em conjunto para ajudar a manter o software GIS atual em derivados Debian, como UbuntuGIS , que fornece backports de pacotes GIS para Ubuntu, e OSGeo-Live para sua distribuição baseada no Ubuntu.
 O Debian GIS se orgulha de que derivados estão lucrando com o trabalho dentro do Debian e está tentando estabelecer conexões fortes com esses derivados. Com o UbuntuGIS, a conexão é tão forte que um fluxo de trabalho comum foi criado, onde os desenvolvedores do UbuntuGIS estão injetando seu pacote diretamente no sistema de controle de versão do Debian GIS. Para ter certeza de que não haverá conflitos com as revisões do Debian, deve-se prestar atenção à numeração das revisões.
 
 \subsection{Ubuntu-GIS}
-
+% falta revisar
 Após adicionar o repositório UbuntuGIS correspondente à sua distribuição (em sources.list), o usuário pode instalar facilmente em sua máquina cada um dos aplicativos GIS, através do Synaptic Package Manager ou digitando sudo apt-get install nome do programa na linha de comando, como qualquer outro pacote. 
 O Ubuntu-GIS basicamente reempacota os pacotes do Debian-GIS nas diferentes distribuições do Ubuntu. Uma vez que não é aconselhável instalar os pacotes diretamente pois os mesmos têm compatibilidade de fonte mas a compatibilidade binária não tem garantia de funcionamento, além até da possibilidade dos pacotes terem nomes diferentes devido a ambientes de compilação diferentes. Mas devido a compatibilidade pode ser que funcione corretamente com a realização de alguns ajustes.
 
 \subsection{OSGeoLive}
-
+% falta revisar
 É um DVD independente, pen drive USB e máquina virtual, baseado no Lubuntu. Inclui mais de 50 dos melhores aplicativos geoespaciais de código aberto, pré-configurados com dados, visões gerais do projeto e inicializações rápidas, traduzidos em vários idiomas. É uma excelente ferramenta para demonstrar GeoSpatial Open Source, usando em tutoriais e workshops, ou fornecendo a potenciais novos usuários. Ele permite que o usuário experimente uma ampla variedade de software geoespacial de código aberto sem instalar nada. É composto inteiramente de software livre, permitindo que seja livremente distribuído.  Ele fornece aplicativos pré-configurados para uma variedade de casos de uso geoespacial, incluindo armazenamento, publicação, visualização, análise e manipulação de dados. Ele também contém conjuntos de dados de amostra e documentação.
 Para experimentar os aplicativos, basta inserir o DVD ou pen drive USB no computador ou máquina virtual. Reinicializar o computador (verificar a ordem do dispositivo de inicialização, caso necessário), pressionar “Enter” para iniciar e fazer login. Selecionar e executar os aplicativos no menu “Geoespacial”.
 OSGeoLive é um projeto da Fundação OSGeo, a Fundação OSGeo é uma organização sem fins lucrativos que apoia o desenvolvimento, promoção e educação de software de código-fonte aberto geoespacial.
 
 
 \subsection{Como contribuir}
-
+% falta revisar
 Do desenvolvedor ao usuário, há uma longa cadeia de tarefas nas quais existem a possibilidade de realizar algumas atividades. Primeiro, é preciso se manter informado sobre o panorama do software em GIS e / ou OpenStreetMap. Portanto, o usuário pode ajudar a monitorar o cenário GIS para softwares novos e atualizados e manter a equipe informada. O software a ser empacotado é escolhido de acordo com critérios como a necessidade do usuário e a consistência da distribuição.
 Uma vez no Debian, o software é monitorado por sua qualidade e os bugs são corrigidos, se possível em colaboração com o (s) mantenedor (es) original (is). Portanto, o usuário pode ajudar fazendo a triagem de bugs, procurando por patches ou criando-os, depois testando as correções e informando a equipe. Todo esse trabalho não seria muito útil se permanecesse confidencial ou confinado aos pacotes fonte do Debian e suas distribuições derivadas. Também é dedicado algum tempo para anunciá-lo para o mundo via www.debian.org e para facilitar a integração de novos membros. Traduzir as descrições dos pacotes (se o usuário falar outro idioma além do inglês), marcar os pacotes com metadados e enviar capturas de tela também ajudará os usuários a encontrar o software que atende às suas necessidades.
 Existem muitas maneiras de contribuir para o projeto e para isso é necessário entrar em contato com a equipe Debian-GIS em debian-gis@lists.debian.org.
 
 \subsection{Tasks}
-
+% falta revisar
 O Debian GIS Debian Pure Blend é organizado por tasks, que agrupam pacotes em torno de temas amplos como serviços web e estação de trabalho. As tasks listam programas que já estão empacotados no Debian assim como pacotes em preparação. Os arquivos de tasks não são hospedados nos repositórios Debian GIS, mas no repositório Debian Blends, em uma área de trabalho de computador normal, o usuário provavelmente desejará instalar pelo menos a task da estação de trabalho que contém os aplicativos GIS mais usados. 
 Os meta-pacotes do Debian GIS Blend podem ser instalados em uma instalação normal do Debian. Como isso pode ser feito depende de qual versão do Debian você está executando.  
 Estes são os metapacotes / tasks que podem ser instalados usando o comando apt-get install (nome do metapacote):
@@ -36,80 +36,67 @@ Estes são os metapacotes / tasks que podem ser instalados usando o comando apt-
 	\item gis-osm - Programas relacionados ao OpenStreetMap
 	\item gis-remotesensing - Sensoriamento remoto e observação da Terra
 	\item gis-statistics - Estatísticas com dados geográficos
-• gis-web - Apresentar informações geográficas via web mapserver
-• gis-workstation - estação de trabalho de Sistemas de Informação Geográfica (GIS)
-• gis-devel - pacotes de desenvolvimento GIS
+	\item gis-web - Apresentar informações geográficas via web mapserver
+	\item gis-workstation - estação de trabalho de Sistemas de Informação Geográfica (GIS)
+	\item gis-devel - pacotes de desenvolvimento GIS
 
 \end{itemize}
 \section{Sistemas Debian}
-
+% falta revisar
 O sistema Debian ou Debian GNU/Linux é um sistema operacional que faz parte do projeto Debian, que é uma organização de pessoas com interesse em comum de criar um sistema operacional livre. Nesse projeto os membros são voluntários, e o sistema operacional Debian, que é um conjunto de programas básicos e utilitários que fazem o computador funcionar, pode ser obtido gratuitamente na web. O sistema Debian é muito conhecido devido ao seu poderoso sistema de gerenciamento de pacotes (APT, Advanced Packaging Tool ou Ferramenta de Empacotamento Avançada) que permite a instalação de novos pacotes, além da atualização e remoção dos pacotes antigos de forma limpa e relativamente fácil. O Debian possui acesso a repositórios online com uma quantidade enorme de pacotes, sendo oficialmente apenas softwares livres. Softwares não-livres também podem ser baixados e instalados caso seja necessário.
 
 De acordo com o próprio website oficial do Debian (www.debian.org), o Debian é uma organização totalmente voluntária dedicada a desenvolver software livre e promover os ideais da comunidade de Software Livre. O projeto Debian se iniciou em 1993, quando Ian Murdock ofereceu um convite livre a desenvolvedores de software livre para contribuir com uma distribuição completa e coerente baseada no kernel do Linux relativamente novo. O nome “Debian” vem da junção do nome do principal fundador, Ian, com o de sua esposa, Debra. Os Desenvolvedores Debian estão envolvidos em uma variedades de atividades, incluindo Web e FTP, administração do site, design gráfico, análise legal de licenças de software, escrevendo documentação, e é claro, mantendo pacotes de softwares.
 
 \subsection{Vantagens da utilização do Debian}
-A página oficial www.debian.org/intro/why\_debian.pt.html lista o motivo de escolher o Debian para utilizar em uma máquina e entre suas principais vantagens estão:
+A página oficial \textit{www.debian.org/intro/why\_debian.pt.html} lista o motivo de escolher o \textit{Debian} para utilizar em uma máquina e entre suas principais vantagens estão:
 
-% use ambiente de itemização do latex.
-
-• Velocidade na resolução de dúvidas em sua lista de discussão;
-• O sistema é mantido por seus próprios usuários;
-• Existem muitas empresas e pessoas que usam o Debian, o que pode ser visto através do site www.debian.org/users/;
-• O Dpkg é um dos melhores sistema de empacotamento atualmente, cansativos testes são feitos para incluir softwares novos aos sistema Debian stable;
-• Instalação melhorada periodicamente, já que antes a dificuldade de instalação era um problema bem comentado pelos interessados em migrar para o debian;
-• São mais de 59.000 programas diferentes;
-• Atualização do Sistema simplificado com o APT;
-• Suporte para múltiplas arquiteturas (alpha, amd64, armel, hppa, i386, ia64, mips, mipsel, powerpc, s390, e sparc);
-• Estabilidade, Leve e Rápido, Drivers escritos pelos usuários, sem dependência dos fabricantes.
+\begin{itemize}
+	\item Velocidade na resolução de dúvidas em sua lista de discussão;
+	\item O sistema é mantido por seus próprios usuários;
+	\item Existem muitas empresas e pessoas que usam o Debian, o que pode ser visto através do site \textit{www.debian.org/users/};
+	\item O Dpkg é um dos melhores sistema de empacotamento atualmente, cansativos testes são feitos para incluir softwares novos aos sistema Debian stable;
+	\item Instalação melhorada periodicamente, já que antes a dificuldade de instalação era um problema bem comentado pelos interessados em migrar para o debian;
+	\item São mais de 59.000 programas diferentes;
+	\item Atualização do Sistema simplificado com o APT;
+	\item Suporte para múltiplas arquiteturas (alpha, amd64, armel, hppa, i386, ia64, mips, mipsel, powerpc, s390, e sparc);
+	\item Estabilidade, Leve e Rápido, Drivers escritos pelos usuários, sem dependência dos fabricantes.
+\end{itemize}
 
 Mas como nada é perfeito o Debian também tem alguns pontos de reclamação que ainda estão sendo otimizados, que são:
 
-• Nem todo hardware é suportado;
-• O Debian é difícil de configurar;
-• Falta de software comercial popular.
+\begin{itemize}
+	\item Nem todo hardware é suportado;
+	\item O Debian é difícil de configurar;
+	\item Falta de software comercial popular.
+
+\end{itemize}
 
 \subsection{Derivados do Debian}
-%o texto a seguir é pura cópia da Internet. Se o texto não foi você quem escreveu, tem que estar entre aspas e dizer a origem.
-De acordo com o site www.debian.org/derivatives/index.pt.html existem várias distribuições baseadas no Debian. Algumas pessoas podem querer dar uma olhada nessas distribuições além dos lançamentos oficiais do Debian. Um derivado do Debian é uma distribuição baseada no trabalho realizado no Debian, mas com sua própria identidade, objetivos e público-alvo, e é criado por uma entidade que é independente do Debian. Os derivados modificam o Debian para atingir os objetivos que eles mesmos estabeleceram. O Debian dá boas-vindas e encoraja organizações que desejam desenvolver novas distribuições baseadas no Debian. No espírito do contrato social do Debian, é esperado que os derivados contribuam com seu trabalho para o Debian e os projetos dos autores originais, para que todos possam se beneficiar de suas melhorias.
 
-Um bom motivo pra usar derivados Debian é ter uma necessidade específica que é melhor atendida por um derivado, o usuário pode preferir usá-lo ao invés do Debian ou se o usuário faz parte de uma comunidade específica ou grupo de pessoas e existe um derivado para esse grupo, pode preferível usá-lo em vez do Debian.
+De acordo com o site \textit{www.debian.org/derivatives/index.pt.html}: 
+\begin{quote}
+	''Existem várias distribuições baseadas no Debian. Algumas pessoas podem querer dar uma olhada nessas distribuições além dos lançamentos oficiais do Debian. Um derivado do Debian é uma distribuição baseada no trabalho realizado no Debian, mas com sua própria identidade, objetivos e público-alvo, e é criado por uma entidade que é independente do Debian. Os derivados modificam o Debian para atingir os objetivos que eles mesmos estabeleceram. O Debian dá boas-vindas e encoraja organizações que desejam desenvolver novas distribuições baseadas no Debian. No espírito do contrato social do Debian, é esperado que os derivados contribuam com seu trabalho para o Debian e os projetos dos autores originais, para que todos possam se beneficiar de suas melhorias.''
+\end{quote}
 
-O Debian se interessa por derivados pois eles levam o Debian a um número maior de pessoas com experiências e necessidades mais diversas do que o público que é alcançado atualmente. Ao se desenvolver relacionamentos com os derivados, integrando informações sobre eles na infraestrutura Debian e mesclando as mudanças que eles fazem de volta no Debian, a experiência é compartilhada com os derivados, o entendimento sobre os derivados e seus públicos é expandido, potencialmente a comunidade Debian é aumentada, o Debian é melhorado para o público existente e o Debian vai se adequando para um público mais diversificado. Os derivados devem atender a maioria desses critérios:
-• cooperação ativa com o Debian.
-• serem mantidos ativamente.
-• terem uma equipe de pessoas envolvidas, incluindo pelo menos um(a) membro(a) do Debian.
-• ingressarem no censo dos derivados do Debian e incluírem um arquivo sources.list em sua página de censo.
-• terem um recurso distinto ou foco.
-• serem distribuições notáveis e estabelecidas. 
+O direcionamento do público de certo nicho para o derivado Debian que contém usuários que partilham de objetivos semelhantes, ajuda a manter a satisfação do usuário com o Debian como um todo, já que seu acesso a recursos será direcionado a realização das tarefas de seu nicho com mais facilidade e sem a necessidade de ter que conhecer e dominar todos os recursos do Debian. E dado esse aumento na satisfação do publico de diferentes nichos, é de se esperar que a comunidade Debian cresça como um todo.
 
-\subsection{Distribuição Ubuntu Desktop}
 
-É um sistema operacional não comercial, patrocinado pela Canonical e baseado na distribuição Debian. Atualmente, é uma das mais populares distribuições Linux. O nome Ubuntu é uma palavra sul-africana que significa humanidade para com os outros ou sou o que sou pelo que nós somos. A sua versão desktop vem acompanhada com muitos softwares uteis ao usuário domestico como: Libre Office (Pacote Office), GIMP (Photoshop), Firefox (Navegador), Thunderbird (Cliente de E-mail).
-
-Essa distribuição tem como objetivo apresentar um sistema operacional para o usuário final, buscando atender em todos os aspectos as necessidades dos usuários.
-
-\subsection{Distribuição Kali Linux}
-
-De acordo com a página oficial kali.org, essa é uma distribuição não comercial voltada para os profissionais da área de segurança da informação. Ela disponibiliza várias ferramentas para detectar falhas de segurança que permitem a invasão de um sistema, por isso ela é definida como Penetration Testing Distribution. A distribuição Kali substituiu a distribuição backtrack que foi descontinuada (2013). Kali é o nome de uma deusa hindu com força destrutiva e significa “the black one” em sânscrito. Essa distribuição é a principal ferramenta atual para realização de testes de penetrações em redes corporativas
-
-\subsection{Distribuição Linux Mint}
-
-De acordo com a página oficial linuxmint.com, essa é uma distribuição não comercial de origem irlandesa e baseada nas distribuições Debian e Ubuntu. O nome “Mint” significa “hortelã” em inglês, por isso a cor e o formato do logo lembra essa planta. O Linux Mint é uma distribuição desenvolvida para computadores com baixa performance de hardware, tem as mesmas características que o Ubuntu Desktop, porém possui uma interface gráfica mais simples e leve. O foco do Mint é se parecer com o Windows 7. O objetivo do Linux Mint é produzir um sistema operacional moderno, elegante e confortável que seja poderoso e fácil de usar.
 
 \section{Requisitos para um software ser aceito no Debian-GIS}
 
 No geral para um pacote ser aceito no Debian-GIS as regras são basicamente as mesmas para que o pacote seja aceito no Debian, pois é aconselhável seguir o caminho normal para o \textit{upload} de pacotes Debian em pacotes Debian-Gis. Porém existem algumas edições no arquivo control do repositório Debian do software empacotado que devem ser realizadas e que são específicas para o Debian-Gis de acordo com a Política oficial Debian-GIS que pode ser encontrada através do link \textit{https://debian-gis-team.pages.debian.net/policy/policy.html}.
 
 \subsection{Mudanças no diretório Debian/control}
-
 De acordo com a Política Oficial do Debian-GIS, as seguintes mudanças devem ser feitas obrigatoriamente para que o pacote seja aceito:
+\begin{verbatim}
 Section (Seção): Deve ser “science” para o pacote de origem.
 Priority (Prioridade): Deve ser “optional” a menos que proibido pela política Debian.
 Maintainer (Mantenedor): O mantenedor deve ser Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>. O usuário pode se inscrever também nesta lista caso queira participar.
 Uploaders: O usuário deve se increver como um uploader quando tiver um interesse significativo em um pacote.
+\end{verbatim}
 
 \subsection{Busca por um sponsor}
 
-Para quem não é um desenvolvedor oficial do Debian, para que o pacote seja posto no Debian é necessária a busca por um sponsor que revisará esse pacote e realizará a operação de upload. Existem vários Debian Developers na equipe Debian-GIS, infelizmente eles estão muito ocupados e podem não responder aos pedidos de patrocínio enviados para a Lista de Discussão dos Desenvolvedores Debian-GIS. Portanto, é recomendado seguir o processo normal no Debian e enviar um relatório de bug de Solicitação de Patrocínio (RFS). O site Debian Mentors é o melhor lugar para enviar seu pacote para atrair patrocinadores, o site também fornece um modelo para o seu relatório de bug RFS.
+Para quem não é um desenvolvedor oficial do Debian, para que o pacote seja posto no Debian é necessária a busca por um sponsor que revisará esse pacote e realizará a operação de \textit{upload}. Existem vários \textit{Debian Developers} na equipe \textit{Debian-GIS}, infelizmente eles estão muito ocupados e podem não responder aos pedidos de patrocínio enviados para a Lista de Discussão dos Desenvolvedores \textit{Debian-GIS}. Portanto, é recomendado seguir o processo normal no \textit{Debian} e enviar um relatório de bug de Solicitação de Patrocínio (RFS). O site \textit{Debian Mentors} é o melhor lugar para enviar seu pacote para atrair patrocinadores, o site também fornece um modelo para o seu relatório de bug RFS.
 
-O relatório de bug RFS também deve ser copiado para a lista de discussão dos desenvolvedores GIS do Debian. A melhor maneira de fazer isso é usar o cabeçalho X-Debbugs-CC no relatório de bug. Adicione X-Debbugs-CC: pkg-grass-devel@lists.alioth.debian.org ao cabeçalho de e-mail da mensagem ou use a opção s no utilitário reportbug.
+O relatório de bug RFS também deve ser copiado para a lista de discussão dos desenvolvedores GIS do \textit{Debian}. A melhor maneira de fazer isso é usar o cabeçalho\textit{ X-Debbugs-CC} no relatório de bug. Adicione \textit{X-Debbugs-CC: pkg-grass-devel@lists.alioth.debian.org} ao cabeçalho de e-mail da mensagem ou use a opção \textbf{s} no utilitário reportbug.
