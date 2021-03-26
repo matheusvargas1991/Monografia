@@ -2,36 +2,29 @@
 \chapter{Debian-GIS}
 %================================================================
 \section{O que é o Debian-GIS}
-% falta revisar
+
 O \textbf{Debian-GIS} é um \textit{Debian Pure Blend}, o que significa ser uma parte do Debian nos quais seus pacotes estão agrupados e disponíveis para um determinado grupo de usuários que possuem necessidades especiais, tornando desnecessário o acesso a todos os pacotes Debian disponíveis. O Debian-GIS tem como objetivo atender os usuários interessados em um Sistema de Informação Geográfica, ou seja, visa satisfazer as necessidades de usuários que trabalham com mapas, sensoriamento remoto e observação da Terra e dispõe de uma lista de programas GIS selecionados para o Debian.
-A equipe Debian-GIS também atua em conjunto para ajudar a manter o software GIS atual em derivados Debian, como UbuntuGIS , que fornece backports de pacotes GIS para Ubuntu, e OSGeo-Live para sua distribuição baseada no Ubuntu.
-O Debian GIS se orgulha de que derivados estão lucrando com o trabalho dentro do Debian e está tentando estabelecer conexões fortes com esses derivados. Com o UbuntuGIS, a conexão é tão forte que um fluxo de trabalho comum foi criado, onde os desenvolvedores do UbuntuGIS estão injetando seu pacote diretamente no sistema de controle de versão do Debian GIS. Para ter certeza de que não haverá conflitos com as revisões do Debian, deve-se prestar atenção à numeração das revisões.
 
-\subsection{Ubuntu-GIS}
-% falta revisar
-Após adicionar o repositório UbuntuGIS correspondente à sua distribuição (em sources.list), o usuário pode instalar facilmente em sua máquina cada um dos aplicativos GIS, através do Synaptic Package Manager ou digitando sudo apt-get install nome do programa na linha de comando, como qualquer outro pacote. 
-O Ubuntu-GIS basicamente reempacota os pacotes do Debian-GIS nas diferentes distribuições do Ubuntu. Uma vez que não é aconselhável instalar os pacotes diretamente pois os mesmos têm compatibilidade de fonte mas a compatibilidade binária não tem garantia de funcionamento, além até da possibilidade dos pacotes terem nomes diferentes devido a ambientes de compilação diferentes. Mas devido a compatibilidade pode ser que funcione corretamente com a realização de alguns ajustes.
+A equipe Debian-GIS também atua em conjunto para ajudar a manter o software GIS atual em derivados Debian, como \textbf{UbuntuGIS} , que reempacota os pacotes do Debian-GIS nas diferentes distribuições do Ubuntu, e \textbf{OSGeo-Live} fornece aplicativos pré-configurados para uma variedade de casos de uso geoespacial, incluindo armazenamento, publicação, visualização, análise e manipulação de dados. Ele também contém conjuntos de dados de amostra e documentação.
 
-\subsection{OSGeoLive}
-% falta revisar
-É um DVD independente, pen drive USB e máquina virtual, baseado no Lubuntu. Inclui mais de 50 dos melhores aplicativos geoespaciais de código aberto, pré-configurados com dados, visões gerais do projeto e inicializações rápidas, traduzidos em vários idiomas. É uma excelente ferramenta para demonstrar GeoSpatial Open Source, usando em tutoriais e workshops, ou fornecendo a potenciais novos usuários. Ele permite que o usuário experimente uma ampla variedade de software geoespacial de código aberto sem instalar nada. É composto inteiramente de software livre, permitindo que seja livremente distribuído.  Ele fornece aplicativos pré-configurados para uma variedade de casos de uso geoespacial, incluindo armazenamento, publicação, visualização, análise e manipulação de dados. Ele também contém conjuntos de dados de amostra e documentação.
-Para experimentar os aplicativos, basta inserir o DVD ou pen drive USB no computador ou máquina virtual. Reinicializar o computador (verificar a ordem do dispositivo de inicialização, caso necessário), pressionar “Enter” para iniciar e fazer login. Selecionar e executar os aplicativos no menu “Geoespacial”.
-OSGeoLive é um projeto da Fundação OSGeo, a Fundação OSGeo é uma organização sem fins lucrativos que apoia o desenvolvimento, promoção e educação de software de código-fonte aberto geoespacial.
+De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/packaging.html}:
 
-
-\subsection{Como contribuir}
-% falta revisar
-Do desenvolvedor ao usuário, há uma longa cadeia de tarefas nas quais existem a possibilidade de realizar algumas atividades. Primeiro, é preciso se manter informado sobre o panorama do software em GIS e / ou OpenStreetMap. Portanto, o usuário pode ajudar a monitorar o cenário GIS para softwares novos e atualizados e manter a equipe informada. O software a ser empacotado é escolhido de acordo com critérios como a necessidade do usuário e a consistência da distribuição.
-Uma vez no Debian, o software é monitorado por sua qualidade e os bugs são corrigidos, se possível em colaboração com o (s) mantenedor (es) original (is). Portanto, o usuário pode ajudar fazendo a triagem de bugs, procurando por patches ou criando-os, depois testando as correções e informando a equipe. Todo esse trabalho não seria muito útil se permanecesse confidencial ou confinado aos pacotes fonte do Debian e suas distribuições derivadas. Também é dedicado algum tempo para anunciá-lo para o mundo via www.debian.org e para facilitar a integração de novos membros. Traduzir as descrições dos pacotes (se o usuário falar outro idioma além do inglês), marcar os pacotes com metadados e enviar capturas de tela também ajudará os usuários a encontrar o software que atende às suas necessidades.
-Existem muitas maneiras de contribuir para o projeto e para isso é necessário entrar em contato com a equipe Debian-GIS em debian-gis@lists.debian.org.
+\begin{quote}
+	''O Debian GIS se orgulha de que derivados estão lucrando com o trabalho dentro do Debian e está tentando estabelecer conexões fortes com esses derivados. Com o UbuntuGIS, a conexão é tão forte que um fluxo de trabalho comum foi criado, onde os desenvolvedores do UbuntuGIS estão injetando seu pacote diretamente no sistema de controle de versão do Debian GIS. Para ter certeza de que não haverá conflitos com as revisões do Debian, deve-se prestar atenção à numeração das revisões.''
+\end{quote}
 
 \subsection{Tasks}
-% falta revisar
-O Debian GIS Debian Pure Blend é organizado por tasks, que agrupam pacotes em torno de temas amplos como serviços web e estação de trabalho. As tasks listam programas que já estão empacotados no Debian assim como pacotes em preparação. Os arquivos de tasks não são hospedados nos repositórios Debian GIS, mas no repositório Debian Blends, em uma área de trabalho de computador normal, o usuário provavelmente desejará instalar pelo menos a task da estação de trabalho que contém os aplicativos GIS mais usados. 
-Os meta-pacotes do Debian GIS Blend podem ser instalados em uma instalação normal do Debian. Como isso pode ser feito depende de qual versão do Debian você está executando.  
+
+De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/tasks.html}:
+
+\begin{quote}
+	''O Debian GIS Debian Pure Blend é organizado por tasks, que agrupam pacotes em torno de temas amplos como serviços web e estação de trabalho. As tasks listam programas que já estão empacotados no Debian assim como pacotes em preparação. Os arquivos de tasks não são hospedados nos repositórios Debian GIS, mas no repositório Debian Blends, em uma área de trabalho de computador normal, o usuário provavelmente desejará instalar pelo menos a task da estação de trabalho que contém os aplicativos GIS mais usados. Os meta-pacotes do Debian GIS Blend podem ser instalados em uma instalação normal do Debian. Como isso pode ser feito depende de qual versão do Debian você está executando.''  
+\end{quote}
+
 Estes são os metapacotes / tasks que podem ser instalados usando o comando apt-get install (nome do metapacote):
+
 \begin{itemize}
-	\item  gis-data - dados Debian GIS
+	\item gis-data - dados Debian GIS
 	\item gis-gps - programas relacionados a GPS
 	\item gis-osm - Programas relacionados ao OpenStreetMap
 	\item gis-remotesensing - Sensoriamento remoto e observação da Terra
@@ -45,7 +38,7 @@ Estes são os metapacotes / tasks que podem ser instalados usando o comando apt-
 % falta revisar
 O sistema Debian ou Debian GNU/Linux é um sistema operacional que faz parte do projeto Debian, que é uma organização de pessoas com interesse em comum de criar um sistema operacional livre. Nesse projeto os membros são voluntários, e o sistema operacional Debian, que é um conjunto de programas básicos e utilitários que fazem o computador funcionar, pode ser obtido gratuitamente na web. O sistema Debian é muito conhecido devido ao seu poderoso sistema de gerenciamento de pacotes (APT, Advanced Packaging Tool ou Ferramenta de Empacotamento Avançada) que permite a instalação de novos pacotes, além da atualização e remoção dos pacotes antigos de forma limpa e relativamente fácil. O Debian possui acesso a repositórios online com uma quantidade enorme de pacotes, sendo oficialmente apenas softwares livres. Softwares não-livres também podem ser baixados e instalados caso seja necessário.
 
-De acordo com o próprio website oficial do Debian (www.debian.org), o Debian é uma organização totalmente voluntária dedicada a desenvolver software livre e promover os ideais da comunidade de Software Livre. O projeto Debian se iniciou em 1993, quando Ian Murdock ofereceu um convite livre a desenvolvedores de software livre para contribuir com uma distribuição completa e coerente baseada no kernel do Linux relativamente novo. O nome “Debian” vem da junção do nome do principal fundador, Ian, com o de sua esposa, Debra. Os Desenvolvedores Debian estão envolvidos em uma variedades de atividades, incluindo Web e FTP, administração do site, design gráfico, análise legal de licenças de software, escrevendo documentação, e é claro, mantendo pacotes de softwares.
+De acordo com o próprio website oficial do Debian o \textit{www.debian.org}, o Debian é uma organização totalmente voluntária dedicada a desenvolver software livre e promover os ideais da comunidade de Software Livre. O projeto Debian se iniciou em 1993, quando Ian Murdock ofereceu um convite livre a desenvolvedores de software livre para contribuir com uma distribuição completa e coerente baseada no kernel do Linux relativamente novo. O nome “Debian” vem da junção do nome do principal fundador, Ian, com o de sua esposa, Debra. Os Desenvolvedores Debian estão envolvidos em uma variedades de atividades, incluindo Web e FTP, administração do site, design gráfico, análise legal de licenças de software, escrevendo documentação, e é claro, mantendo pacotes de softwares.
 
 \subsection{Vantagens da utilização do Debian}
 A página oficial \textit{www.debian.org/intro/why\_debian.pt.html} lista o motivo de escolher o \textit{Debian} para utilizar em uma máquina e entre suas principais vantagens estão:
@@ -74,6 +67,7 @@ Mas como nada é perfeito o Debian também tem alguns pontos de reclamação que
 \subsection{Derivados do Debian}
 
 De acordo com o site \textit{www.debian.org/derivatives/index.pt.html}: 
+
 \begin{quote}
 	''Existem várias distribuições baseadas no Debian. Algumas pessoas podem querer dar uma olhada nessas distribuições além dos lançamentos oficiais do Debian. Um derivado do Debian é uma distribuição baseada no trabalho realizado no Debian, mas com sua própria identidade, objetivos e público-alvo, e é criado por uma entidade que é independente do Debian. Os derivados modificam o Debian para atingir os objetivos que eles mesmos estabeleceram. O Debian dá boas-vindas e encoraja organizações que desejam desenvolver novas distribuições baseadas no Debian. No espírito do contrato social do Debian, é esperado que os derivados contribuam com seu trabalho para o Debian e os projetos dos autores originais, para que todos possam se beneficiar de suas melhorias.''
 \end{quote}
