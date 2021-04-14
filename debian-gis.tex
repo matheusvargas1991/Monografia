@@ -7,7 +7,7 @@ O \textbf{Debian-GIS} é um \textit{Debian Pure Blend}, o que significa ser uma 
 
 A equipe Debian-GIS também atua em conjunto para ajudar a manter o software GIS atual em derivados Debian, como \textbf{UbuntuGIS} , que reempacota os pacotes do Debian-GIS nas diferentes distribuições do Ubuntu, e \textbf{OSGeo-Live} fornece aplicativos pré-configurados para uma variedade de casos de uso geoespacial, incluindo armazenamento, publicação, visualização, análise e manipulação de dados. Ele também contém conjuntos de dados de amostra e documentação.
 
-De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/packaging.html}:
+De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/packaging.html} \cite{bib:gis}:
 
 \begin{quote}
 	''O Debian GIS se orgulha de que derivados estão lucrando com o trabalho dentro do Debian e está tentando estabelecer conexões fortes com esses derivados. Com o UbuntuGIS, a conexão é tão forte que um fluxo de trabalho comum foi criado, onde os desenvolvedores do UbuntuGIS estão injetando seu pacote diretamente no sistema de controle de versão do Debian GIS. Para ter certeza de que não haverá conflitos com as revisões do Debian, deve-se prestar atenção à numeração das revisões.''
@@ -15,7 +15,7 @@ De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/pac
 
 \subsection{Tasks}
 
-De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/tasks.html}:
+De acordo com o site \textit{https://debian-gis-team.pages.debian.net/policy/tasks.html} \cite{bib:gis}:
 
 \begin{quote}
 	''O Debian GIS Debian Pure Blend é organizado por tasks, que agrupam pacotes em torno de temas amplos como serviços web e estação de trabalho. As tasks listam programas que já estão empacotados no Debian assim como pacotes em preparação. Os arquivos de tasks não são hospedados nos repositórios Debian GIS, mas no repositório Debian Blends, em uma área de trabalho de computador normal, o usuário provavelmente desejará instalar pelo menos a task da estação de trabalho que contém os aplicativos GIS mais usados. Os meta-pacotes do Debian GIS Blend podem ser instalados em uma instalação normal do Debian. Como isso pode ser feito depende de qual versão do Debian você está executando.''  
@@ -84,9 +84,13 @@ No geral para um pacote ser aceito no Debian-GIS as regras são basicamente as m
 De acordo com a Política Oficial do Debian-GIS, as seguintes mudanças devem ser feitas obrigatoriamente para que o pacote seja aceito:
 \begin{verbatim}
 Section (Seção): Deve ser “science” para o pacote de origem.
-Priority (Prioridade): Deve ser “optional” a menos que proibido pela política Debian.
-Maintainer (Mantenedor): O mantenedor deve ser Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>. O usuário pode se inscrever também nesta lista caso queira participar.
-Uploaders: O usuário deve se increver como um uploader quando tiver um interesse significativo em um pacote.
+Priority (Prioridade): Deve ser “optional” a menos que proibido pela
+política Debian.
+Maintainer (Mantenedor): O mantenedor deve ser Debian GIS Project
+<pkg-grass-devel@lists.alioth.debian.org>. O usuário pode se
+inscrever também nesta lista caso queira participar.
+Uploaders: O usuário deve se increver como um uploader quando
+tiver um interesse significativo em um pacote.
 \end{verbatim}
 
 \subsection{Busca por um sponsor}

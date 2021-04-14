@@ -3,6 +3,8 @@
 %================================================================
 \section{Requisitos do E-foto}
 
+Aqui será explicada a criação do pacote debian do E-foto de acordo com as regras da Debian Policy \cite{bib:Ian}, cujo material de auxílio usado foi manual de empacotamento de Debian \cite{bib:Lucas}, o guia para novos mantenedores do Debian \cite{bib:Josip} e o guia rápido do empacotamento no Debian \cite{bib:Filho2020}.  
+
 \subsection{Pacotes para a criação de um pacote de acordo com a política do Debian}
 
 Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote \textit{Debian} de acordo com a política do \textit{Debian} que deve ser criado num ambiente \textit{Debian unstable}. 
@@ -66,7 +68,8 @@ alias debuildsa='dpkg-buildpackage -sa -ksua\_chave\_gpg'
 alias uscan-check='uscan --verbose --report' 
 alias debcheckout='debcheckout -a' 
 export DEBFULLNAME="seu\_nome\_completo\_sem\_acentos/cedilha" 
-export DEBEMAIL="seu\_e-mail" export EDITOR=mcedit export LANG=C.UTF-8 export LANGUAGE=C.UTF-8 
+export DEBEMAIL="seu\_e-mail" export EDITOR=mcedit 
+export LANG=C.UTF-8 export LANGUAGE=C.UTF-8 
 export LC\_ALL=C.UTF-8 
 export QUILT\_PATCHES=debian/patches 
 export PS1='JAULA-SID-\u@\\h:\\w\$ ' 
@@ -130,36 +133,62 @@ O segundo a ser editado será o\textit{ debian/control} que também já vem com 
 Sobre os campos do fonte (parágrafo superior):
 \begin{verbatim}
 Source: nome do programa.
-Section: é o nome da seção em que se enquadra a funcionalidade do programa que será empacotado, essas funções e suas descrições podem ser vistas no site https://packages.debian.org/unstable/.
-Priority: prioridade em que o programa deve ser instalado no Debian, serve para controlar quais pacotes são instalados junto com o Debian em determinadas configurações e essa prioridade deve ser determinada apenas pela funcionalidade que o programa fornece ao usuário.
+Section: é o nome da seção em que se enquadra a funcionalidade do programa que
+será empacotado, essas funções e suas descrições podem ser vistas no site 
+https://packages.debian.org/unstable/.
+Priority: prioridade em que o programa deve ser instalado no Debian, serve
+para controlar quais pacotes são instalados junto com o Debian em determinadas 
+configurações e essa prioridade deve ser determinada apenas pela funcionalidade
+que o programa fornece ao usuário.
 Maintainer: nome do mantenedor do pacote, geralmente junto com e-mail.
-Build-depends: são os pacotes que tem que ser obrigatoriamente instalados para que instalação do programa, como os pacotes são para desenvolvimento, geralmente eles têm -dev no final. O pacote que necessariamente o empacotador está usando é o debhelper-compat (=13).
-Standards-version: A versão mais recente dos padrões (o manual de política e textos associados) com os quais o pacote está em conformidade. 
+Build-depends: são os pacotes que tem que ser obrigatoriamente instalados para
+que instalação do programa, como os pacotes são para desenvolvimento, geralmente
+eles têm -dev no final. O pacote que necessariamente o empacotador está usando
+é o debhelper-compat (=13).
+Standards-version: A versão mais recente dos padrões (o manual de política e
+textos associados) com os quais o pacote está em conformidade. 
 Homepage: É a página da internet onde o código fonte pode ser obtido.
 \end{verbatim}
 
 Sobre o binário (parágrafo inferior):
 \begin{verbatim}
 Package: nome do pacote que será gerado.
-Architecture: aqui deve ser especificado pra qual tipo de arquitetura o empacotador quer que seu pacote seja gerado. Geralmente são any (programas em linguagem compilada) ou all (programas em linguagem interpretada), mas caso o programa só funcione em uma arquitetura específica, ela deve ser especificada aqui nesse campo.
-Depends: são auxiliares que na construção do binário busca dependências do código que não foram especificadas. 
+Architecture: aqui deve ser especificado pra qual tipo de arquitetura o 
+empacotador quer que seu pacote seja gerado. Geralmente são any 
+(programas em linguagem compilada) ou all (programas em linguagem 
+interpretada), mas caso o programa só funcione em uma arquitetura específica,
+ela deve ser especificada aqui nesse campo.
+Depends: são auxiliares que na construção do binário busca dependências
+do código que não foram especificadas. 
 Description: é dividida em duas partes, a descrição curta e a descrição longa.
-A descrição curta deve ser rápida e objetiva com as funcionalidades do programa. Já a longa geralmente é copiada da descrição do autor que é dada na homepage do upstream porém deve ser formatada de acordo com a politica Debian, toda linha tem que ser indentada com um espaço em branco, o comprimento de cada linha é de no máximo 80, caso exista uma linha em branco entre parágrafos ela deve ser preenchida com um ponto final e geralmente é preferível que esse texto seja escrito de maneira impessoal.
+A descrição curta deve ser rápida e objetiva com as funcionalidades do programa.
+Já a longa geralmente é copiada da descrição do autor que é dada na homepage do
+upstream porém deve ser formatada de acordo com a politica Debian, toda linha 
+tem que ser indentada com um espaço em branco, o comprimento de cada linha é de
+no máximo 80, caso exista uma linha em branco entre parágrafos ela deve ser
+preenchida com um ponto final e geralmente é preferível que esse texto seja
+escrito de maneira impessoal.
 \end{verbatim}
 
 Existem outros campos possíveis mas esses listados são os obrigatórios e necessários, esses outros campos podem ser vistos nesse site \textit{https://www.debian.org/doc/debian-policy/ch-controlfields.html. }
 
 O próximo a ser preenchido é o \textit{debian/copyright} com os seguintes campos:
 \begin{verbatim}
-Format: já vem preenchido com o formato que está sendo seguido para a realização do  copyright.
+Format: já vem preenchido com o formato que está sendo seguido para a realização
+do  copyright.
 Upstream-Name: Nome do programa.
-Upstream-Contact: Geralmente é colocado aqui o endereço da página do upstream usada para o envio de bugs.
+Upstream-Contact: Geralmente é colocado aqui o endereço da página do upstream
+usada para o envio de bugs.
 Source: Homepage do usptream.
-Cada arquivo que tiver uma licença diferente deve ser especificado com esses 3 campos:
+Cada arquivo que tiver uma licença diferente deve ser especificado com esses
+3 campos:
 Files: nome do arquivo.
 Copyright: autor e data.
 License: nome da licença.
-Geralmente todo código tem uma especificação de lincença  para o código fonte e outra para o diretório debian no caso de o autor do programa e o autor do empacotamento sejam diferentes. Ou pode ser colocados o mesmo para que os códigos possam ser misturados.
+Geralmente todo código tem uma especificação de lincença  para o código fonte
+e outra para o diretório debian no caso de o autor do programa e o autor do
+empacotamento sejam diferentes. Ou pode ser colocados o mesmo para que os 
+códigos possam ser misturados.
 License: Explicação completa feita sobre o que diz a licença. 
 \end{verbatim}
 
@@ -179,9 +208,15 @@ O restante deve ser apagado e cada linha de comentário deixada só pode ser des
 
 Por último será preenchido o \textit{debian/watch} com as seguintes informações:
 \begin{verbatim}
-Version: a versão do watch que está sendo usada (deve ser usada sempre a mais atual).
-As próximas linhas devem ser preenchidas com links onde devem ser procuradas possíveis atualizações feitas pelo upstream no código fonte. Geralmente são preenchidos com links de sites usados para o controle de versão de programas ou códigos como o Github ou Sourceforge.
-É importante deixar claro que pra realizar o empacotamento o empacotador deve apagar todo lixo, comentário e coisas desnecessárias. O pacote deve ser o mais limpo e leve possível.
+Version: a versão do watch que está sendo usada (deve ser usada sempre
+a mais atual).
+As próximas linhas devem ser preenchidas com links onde devem ser 
+procuradas possíveis atualizações feitas pelo upstream no código fonte.
+Geralmente são preenchidos com links de sites usados para o controle de 
+versão de programas ou códigos como o Github ou Sourceforge.
+É importante deixar claro que pra realizar o empacotamento o empacotador
+deve apagar todo lixo, comentário e coisas desnecessárias. O pacote deve
+ser o mais limpo e leve possível.
 \end{verbatim}
 
 \subsection{Construção do pacote}
