@@ -3,11 +3,11 @@
 %================================================================
 \section{Requisitos do E-foto}
 
-Aqui será explicada a criação do pacote debian do E-foto de acordo com as regras da Debian Policy \cite{bib:Ian}, cujo material de auxílio usado foi manual de empacotamento de Debian \cite{bib:Lucas}, o guia para novos mantenedores do Debian \cite{bib:Josip} e o guia rápido do empacotamento no Debian \cite{bib:Filho2020}.  
+Aqui será explicada a criação do pacote Debian do E-foto de acordo com as regras da Debian Policy \cite{bib:Ian}, cujo material de auxílio usado foi manual de empacotamento de Debian \cite{bib:Lucas}, o guia para novos mantenedores do Debian \cite{bib:Josip} e o guia rápido do empacotamento no Debian \cite{bib:Filho2020}.  
 
 \subsection{Pacotes para a criação de um pacote de acordo com a política do Debian}
 
-Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote \textit{Debian} de acordo com a política do \textit{Debian} que deve ser criado num ambiente \textit{Debian unstable}. 
+Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote Debian de acordo com a política do Debian que deve ser criado num ambiente \textit{Debian unstable}. 
 
 \begin{lstlisting}[language=bash]
 	$ apt update
@@ -23,7 +23,7 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 	\item[Pacote dput-ng] - é uma ferramenta de upload de pacotes para o Debian que fornece uma interface fácil de usar para instalações de hospedagem de arquivos de pacotes Debian. Ele permite que qualquer um que trabalhe com pacotes Debian carregue seu trabalho para um serviço remoto, incluindo ftp-master do Debian, mentors.debian.net, Launchpad ou outras facilidades de hospedagem de pacotes para mantenedores de pacotes Debian.
 	\item[Pacote git-buildpackage] - ferramenta que facilita o manuseio de pacotes Debian em repositórios Git, uma vez que o git é uma forma de controle de versão tanto do software fornecido pelo upstream tanto como do próprio processo de empacotamento.
 	\item[Pacote mc] - é um gerenciador de arquivos de tela inteira em modo texto. Ele usa uma interface de dois painéis e um subshell para execução de comandos. Inclui um editor interno com destaque de sintaxe e um visualizador interno com suporte para arquivos binários.
-	\item[Pacote quilt] - é um gerenciador de patches, acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patche de mudança no empacotamento.
+	\item[Pacote quilt] - é um gerenciador de patches, acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patch de mudança no empacotamento.
 	\item[Pacote spell] - é um programa de verificação ortográfica que imprime cada palavra incorreta em uma linha própria, muito bom para garantir que nenhum arquivo do pacote conterá erros ortográficos, é de muita importância que o empacotador utilize o mesmo após a finalização de cada arquivo para realizar a verificação, pois encontrará dificuldades de ter seu pacote aceito pelo Debian caso tenha erros de ortografia.
 	\item[Pacote tardiff] - compara o conteúdo de dois tarballs e relata quaisquer diferenças encontradas entre eles. Seu uso é principalmente para gerentes de lançamento que podem usá-lo como uma ferramenta de controle de qualidade para garantir que nenhum arquivo tenha sido deixado de lado acidentalmente ou adicionado por engano. TarDiff suporta tarballs compactados, estatísticas de diferenças e supressão de mudanças GNU autotool. Esse pacote é muito usado pois como pode ser visto no manual do desenvolvedor do Debian, o código fonte do upstream geralmente vem no formato .tar.gz.
 	\item[Pacote tree] - é um comando recursivo de listagem de diretórios que produz uma listagem de arquivos em formato de árvore. Muito usado para realizar a verificação de como ficou o empacotamento, se cada arquivo e diretório estão localizados em seu devido lugar.
@@ -33,9 +33,13 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 \section{Criação do Pacote Debian do E-foto}
 %mostrar um passo a passo
 
+\subsection{Verificação de Intenção de Empacotar}
+
+Antes de realizar o empacotamento de qualquer software para o Debian deve ser feita a verificação se não existe esse mesmo software já empacotado ou se algum outro programador já declarou a intenção de empacotá-lo. Para isso é necessário acessar o site \url{https://wnpp.debian.net/} ou o site \url{https://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=wnpp;dist=unstable} e procurar o nome do software que será empacotado, pois pacotes duplicados não são aceitos pelo Debian. Ao fazer isso com o E-foto foi encontrado o bug de intenção de empacotar \url{https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899283}, mas essa tentativa não obteve sucesso pois na época o E-foto ainda estava em Qt 4. Agora com o empacotamento da sua versão em Qt 5 deverá ser criado um outro bug para que o novo pacote seja aceito.
+
 \subsection{Processo de criação de uma jaula de ambiente Debian unstable}
 
-O primeiro passo para a criação de um pacote de acordo com a política do \textit{Debian} é a obtenção de uma ambiente \textit{Debian unstable}, já que todo empacotamento deve ser feito em um ambiente \textit{Debian unstable} (com exceções de modificações ou correções em pacotes já publicados no \textit{Debian stable}), pois o pacote vai entrar no \textit{Debian unstable}, depois passar para \textit{experimental} até poder ser classificado e utilizado no \textit{stable}, mas para a realização desse empacotamento o empacotador não precisará usar uma versão \textit{unstable} do \textit{Debian} caso não seja sua preferência, será suficiente a criação de apenas um ambiente chamado também de \textit{jaula-sid} que é justamente um diretório dentro do \textit{Debian stable} em que o desenvolvedor estará confinado e que dentro dele estará o \textit{Debian unstable} e essa jaula pode ser criada a partir dos comandos: 
+O primeiro passo para a criação de um pacote de acordo com a política do Debian é a obtenção de uma ambiente \textit{Debian unstable}, já que todo empacotamento deve ser feito em um ambiente \textit{Debian unstable} (com exceções de modificações ou correções em pacotes já publicados no \textit{Debian stable}), pois o pacote vai entrar no \textit{Debian unstable}, depois passar para \textit{experimental} até poder ser classificado e utilizado no \textit{stable}, mas para a realização desse empacotamento o empacotador não precisará usar uma versão \textit{unstable} do Debian caso não seja sua preferência, será suficiente a criação de apenas um ambiente chamado também de \textit{jaula-sid} que é justamente um diretório dentro do \textit{Debian stable} em que o desenvolvedor estará confinado e que dentro dele estará o \textit{Debian unstable} e essa jaula pode ser criada a partir dos comandos: 
 
 \begin{lstlisting}[language=bash]
 	$ apt update
@@ -55,7 +59,7 @@ O primeiro passo para a criação de um pacote de acordo com a política do \tex
 	\item[Comando debootstrap sid /jaula-sid/\textit{ftp.br.debian.org/debian}] - realiza o download e a instalação de um ambiente Debian unstable no diretório jaula-sid a partir do link indicado para download da imagem.
 	\item[Comando chroot /jaula-sid/] - altera a raíz para o diretório jaula-sid tornando-o isolado ou enjaulado de forma em que ele não conseguirá acessar nada fora dele mesmo. Com isso, o empacotador ficará a partir daqui utilizando só a versão \textit{unstable} do Debian. É desse método que foi inspirado o nome jaula para o diretório de empacotamento.
 	\item[Comando echo proc /proc proc defaults 0 0 >> etc/ fstab] - cria um dispositivo proc (é um diretório especial onde ficam todas as informações de depuração do \textit{kernel}, também se encontram algumas configurações que habilitam e desabilitam o suporte à alguma coisa no \textit{kernel}) que vai garantir o funcionamento correto da jaula.
-	\item[Comando wget \textit{http://bit.ly/bash-rc-txt}] - realiza o download de um arquivo de texto que contém uma série de comandos de configuração e ele deve ser colocado no \textit{/etc/bash.bashrc} pois esse diretório é lido sempre que ocorre a troca de ambiente para o debian unstable.
+	\item[Comando wget \textit{http://bit.ly/bash-rc-txt}] - realiza o download de um arquivo de texto que contém uma série de comandos de configuração e ele deve ser colocado no \textit{/etc/bash.bashrc} pois esse diretório é lido sempre que ocorre a troca de ambiente para o Debian unstable.
 	\item[Comando cat bash-rc-txt >> /etc/bash.bashrc] - coloca o arquivo no diretório correto como explicado acima.
 
 \end{description}
@@ -76,7 +80,7 @@ export PS1='JAULA-SID-\u@\\h:\\w\$ '
 mount /proc 
 \end{verbatim}
 
-Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve se manter o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o \textit{locales} (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/\_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando \textit{dpkg-configure locales tzdata}. Agora deve ser feita a configuração do \textit{lintian},e para realizar essa configuração deve ser criado o arquivo \textit{/root/.lintianrc} e colocar no mesmo as seguintes linhas: 
+Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve ser mantida o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o \textit{locales} (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/\_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando \textit{dpkg-configure locales tzdata}. Agora deve ser feita a configuração do \textit{lintian},e para realizar essa configuração deve ser criado o arquivo \textit{/root/.lintianrc} e colocar no mesmo as seguintes linhas: 
 
 \begin{verbatim}
 display-info = yes 
@@ -115,8 +119,9 @@ Após feito isso, para começar realmente o empacotamento, é preferível a cria
 	$ mkdir pkgnome-do-programa 
 \end{lstlisting} 
 
-Dentro desse diretório a primeira etapa é obter o código fonte do \textit{upstream} que de acordo com o manual de desenvolvedores deve estar preferencialmente no formato \textit{.tar.gz} (tarball) e descompactá-lo. A política geral dos softwares do \textit{Debian} prevê que para realizar o empacotamento, o diretório raiz deve ser nomeado da seguinte forma: \textbf{nomedoprograma-numerodeversão}. Logo após isso, o empacotador deve preferencialmente verificar o licenciamento do programa e isso pode ser feito de duas formas distintas, uma é através do comando: \textit{lincensecheck} * (que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando\textit{ egrep -sriA25 '(public dom|copyright)' | less} (que toda vez em que as expressões \textit{public dom} ou \textit{copyright} forem citadas nos arquivos-fontes as 25 linhas posteriores serão mostradas, assim mostrando o que o autor do código explicitou sobre a licença). Esse procedimento deve ser feito com calma e de maneira bem minuciosa para novos pacotes pois o \textit{Debian} não aceita nenhum mínimo detalhe que comprometa o fato de o código ser livre.
-O Próximo passo será um dos mais importantes pois é a "debianização" do código fonte (a criação do diretório \textit{Debian} dentro do código junto com seus arquivos necessários de acordo com a política do \textit{Debian}) e isso é feito através do comando:
+Dentro desse diretório a primeira etapa é obter o código fonte do \textit{upstream} que de acordo com o manual de desenvolvedores deve estar preferencialmente no formato \textit{.tar.gz} (tarball) e descompactá-lo. A política geral dos softwares do \textit{Debian} prevê que para realizar o empacotamento, o diretório raiz deve ser nomeado da seguinte forma: \textbf{nomedoprograma-numerodeversão}. Logo após isso, o empacotador deve preferencialmente verificar o licenciamento do programa e isso pode ser feito de duas formas distintas, uma é através do comando: \textit{lincensecheck} * (que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando\textit{ egrep -sriA25 '(public dom|copyright)' | less} (que toda vez em que as expressões \textit{public dom} ou \textit{copyright} forem citadas nos arquivos-fontes as 25 linhas posteriores serão mostradas, assim mostrando o que o autor do código explicitou sobre a licença). Esse procedimento deve ser feito com calma e de maneira bem minuciosa para novos pacotes pois o Debian não aceita nenhum mínimo detalhe que comprometa o fato de o código ser livre.
+
+O Próximo passo será um dos mais importantes pois é a "debianização" do código fonte (a criação do diretório Debian dentro do código junto com seus arquivos necessários de acordo com a política do Debian) e isso é feito através do comando:
 
 \begin{lstlisting}[language=bash]
 	$ dh_make -f ../.tar.gz -c <licença> 
@@ -124,11 +129,11 @@ O Próximo passo será um dos mais importantes pois é a "debianização" do có
 
 \subsection{Modificando o conteúdo do diretório Debian do pacote}
 
-Os primeiros arquivos do diretório \textit{debian} a ser modificados são os que são obrigatórios para o empacotamento:\textbf{ Changelog, Control, Copyright e Rules.} Devido a utilização do pacote \textit{dh-make}, esses arquivos já virão previamente preenchidos com algumas informações que deverão ser modificadas de acordo com o conteúdo do software que está sendo empacotado.
+Os primeiros arquivos do diretório Debian a ser modificados são os que são obrigatórios para o empacotamento:\textbf{ Changelog, Control, Copyright e Rules.} Devido a utilização do pacote \textit{dh-make}, esses arquivos já virão previamente preenchidos com algumas informações que deverão ser modificadas de acordo com o conteúdo do software que está sendo empacotado.
 
-Começando pela edição do \textit{debian/changelog} que no caso de ser a primeira vez em que o software está sendo empacotado, é só alterar o modelo para se adequar ao seu pacote com informações básicas (alterar de \textit{unstable} para \textit{experimental} em caso de ser o primeiro empacotamento do programa, por exemplo), mas futuramente toda modificação no pacote que vai gerar uma revisão pelo \textit{Debian} deve ser documentada nesse arquivo. 
+Começando pela edição do \textit{debian/changelog} que no caso de ser a primeira vez em que o software está sendo empacotado, é só alterar o modelo para se adequar ao seu pacote com informações básicas (alterar de \textit{unstable} para \textit{experimental} em caso de ser o primeiro empacotamento do programa, por exemplo), mas futuramente toda modificação no pacote que vai gerar uma revisão pelo Debian deve ser documentada nesse arquivo. 
 
-O segundo a ser editado será o\textit{ debian/control} que também já vem com o formato preenchido sendo necessário só alterar os valores de acordo com o programa, e esses valores são divididos em dois parágrafos, o superior trata do código fonte e o inferior trata do binário que será gerado.
+O segundo a ser editado será o \textit{debian/control} que também já vem com o formato preenchido sendo necessário só alterar os valores de acordo com o programa, e esses valores são divididos em dois parágrafos, o superior trata do código fonte e o inferior trata do binário que será gerado.
 
 Sobre os campos do fonte (parágrafo superior):
 \begin{verbatim}
@@ -170,7 +175,7 @@ preenchida com um ponto final e geralmente é preferível que esse texto seja
 escrito de maneira impessoal.
 \end{verbatim}
 
-Existem outros campos possíveis mas esses listados são os obrigatórios e necessários, esses outros campos podem ser vistos nesse site \textit{https://www.debian.org/doc/debian-policy/ch-controlfields.html. }
+Existem outros campos possíveis mas esses listados são os obrigatórios e necessários, esses outros campos podem ser vistos nesse site \url{https://www.debian.org/doc/debian-policy/ch-controlfields.html}
 
 O próximo a ser preenchido é o \textit{debian/copyright} com os seguintes campos:
 \begin{verbatim}
@@ -204,7 +209,7 @@ Agora será editado o campo \textit{debian/rules}. Este campo já vem comentado 
 dh $@
 
 \end{verbatim}
-O restante deve ser apagado e cada linha de comentário deixada só pode ser descomentada em caso de necessidades especiais do programa que serão sanadas com as mesmas. O arquivo \textit{rules} é o \textit{makefile} dentro do diretório \textit{Debian} do pacote e é nele que devem ser especificados quaisquer peculiaridades da construção do programa, para que o pacote possa ser montado de maneira bem-feita. Ao final do empacotamento, após a realização dos testes do pacote, essa linhas de comentários que não tiveram utilidade devem ser apagadas.
+O restante deve ser apagado e cada linha de comentário deixada só pode ser descomentada em caso de necessidades especiais do programa que serão sanadas com as mesmas. O arquivo \textit{rules} é o \textit{makefile} dentro do diretório Debian do pacote e é nele que devem ser especificados quaisquer peculiaridades da construção do programa, para que o pacote possa ser montado de maneira bem-feita. Ao final do empacotamento, após a realização dos testes do pacote, essa linhas de comentários que não tiveram utilidade devem ser apagadas.
 
 Por último será preenchido o \textit{debian/watch} com as seguintes informações:
 \begin{verbatim}
@@ -221,11 +226,13 @@ ser o mais limpo e leve possível.
 
 \subsection{Construção do pacote}
 
-Após todas as etapas citadas anteriormente, é hora de usar o comando \textit{debuild} no diretório raiz e esperar a compilação do programa e criação do pacote. Quando acabar muito possivelmente aparecerão alguns erros \textit{lintian} que deverão ser corrigidos para que o pacote esteja de acordo com a política do \textit{Debian}, a maneira mais fácil de corrigir esses erros \textit{lintians} é acessando o site \textit{https://lintian.debian.org/tags.html} e procurar a explicação do erro que está acontecendo e como resolvê-lo. Quando o seu pacote estiver sem erros \textit{lintians}, ou só com \textit{lintians} que não são solucionáveis (não podendo ser \textit{lintians} de erro ou algo relacionado a obrigações do pacote ou empacotador) chegou a hora de realizar as checagens finais e começar a buscar as maneiras de subir esse pacote para o Debian.
+Após todas as etapas citadas anteriormente, é hora de usar o comando \textit{debuild} no diretório raiz e esperar a compilação do programa e criação do pacote. Quando acabar muito possivelmente aparecerão alguns erros \textit{lintian} que deverão ser corrigidos para que o pacote esteja de acordo com a política do Debian, a maneira mais fácil de corrigir esses erros \textit{lintians} é acessando o site \url{https://lintian.debian.org/tags.html} e procurar a explicação do erro que está acontecendo e como resolvê-lo. Quando o seu pacote estiver sem erros \textit{lintians}, ou só com \textit{lintians} que não são solucionáveis (não podendo ser \textit{lintians} de erro ou algo relacionado a obrigações do pacote ou empacotador) chegou a hora de realizar as checagens finais e começar a buscar as maneiras de subir esse pacote para o Debian.
 
 \subsection{Testes finais do pacote}
 
-Logo após a construção do pacote e resolução dos erros \textit{lintians}, o empacotador deve realizar mais alguns testes antes de enviar seu pacote para o \textit{Debian}, primeiramente ele deve passar o comando \textit{spell} em todos os arquivos que ele mesmo criou do diretório \textit{Debian}, depois ele deve usar o comando \textit{tree nomedopacote} dentro do diretório \textit{Debian} do pacote para verificar como foi feita a construção do mesmo, ou seja, se cada arquivo foi para o lugar em que deveria após o empacotamento. E nessa verificação é importante perceber se o \textit{dh\_compress} fez seu papel corretamente, já que ele é uma ferramenta do \textit{debhelper} que comprime todo arquivo com tamanho maior que 4k (com a exceção de arquivos \textit{copyright}, \textit{.html} e outros arquivos web, arquivos de imagens, e arquivos que aparentam já estarem comprimidos com base nas suas extensões), essa compressão de arquivos é feita de acordo com a política do \textit{Debian} e o \textit{dh\_compress} é chamado automaticamente junto com o comando \textit{debuild} usado para a construção do pacote. Após essa etapa o empacotador deve verificar novamente todos os arquivos do diretório \textit{Debian} e usar o comando \textit{debuild} duas vezes para ter certeza de que não ocorrerá nenhum novo erro na construção do pacote. A ultima etapa é usar o \textit{cowbuilder} para testar a construção do pacote em uma jaula \textit{unstable} limpa e isso é feito através dos seguintes comandos:
+Logo após a construção do pacote e resolução dos erros \textit{lintians}, o empacotador deve realizar mais alguns testes antes de enviar seu pacote para o Debian, primeiramente ele deve passar o comando \textit{spell} em todos os arquivos que ele mesmo criou do diretório Debian, depois ele deve usar o comando \textit{tree nomedopacote} dentro do diretório Debian do pacote para verificar como foi feita a construção do mesmo, ou seja, se cada arquivo foi para o lugar em que deveria após o empacotamento. E nessa verificação é importante perceber se o \textit{dh\_compress} fez seu papel corretamente, já que ele é uma ferramenta do \textit{debhelper} que comprime todo arquivo com tamanho maior que 4k (com a exceção de arquivos \textit{copyright}, \textit{.html} e outros arquivos web, arquivos de imagens, e arquivos que aparentam já estarem comprimidos com base nas suas extensões), essa compressão de arquivos é feita de acordo com a política do Debian e o \textit{dh\_compress} é chamado automaticamente junto com o comando \textit{debuild} usado para a construção do pacote.
+
+Após essa etapa o empacotador deve verificar novamente todos os arquivos do diretório Debian e usar o comando \textit{debuild} duas vezes para ter certeza de que não ocorrerá nenhum novo erro na construção do pacote. A ultima etapa é usar o \textit{cowbuilder} para testar a construção do pacote em uma jaula \textit{unstable} limpa e isso é feito através dos seguintes comandos:
 
 \begin{lstlisting}[language=bash]
 	$ cowbuilder create
@@ -233,4 +240,4 @@ Logo após a construção do pacote e resolução dos erros \textit{lintians}, o
 	$cowbuilder build arquivo.dsc
 \end{lstlisting} 
 
-Esses comandos vão criar o ambiente \textit{Debian unstable} limpo, atualizar o mesmo e testar a construção do pacote nesse ambiente respectivamente. Esse teste é de total importância pois durante o processo de empacotamento pode ser gerada uma poluição na jaula que acabará influenciando no resultado final, e com esse teste em um ambiente limpo ocorre uma simulação de como o pacote será construído e testado nos servidores do \textit{Debian} quando for feito seu \textit{upload}.
+Esses comandos vão criar o ambiente \textit{Debian unstable} limpo, atualizar o mesmo e testar a construção do pacote nesse ambiente respectivamente. Esse teste é de total importância pois durante o processo de empacotamento pode ser gerada uma poluição na jaula que acabará influenciando no resultado final, e com esse teste em um ambiente limpo ocorre uma simulação de como o pacote será construído e testado nos servidores do Debian quando for feito seu \textit{upload}.
