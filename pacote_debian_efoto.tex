@@ -7,7 +7,7 @@ Aqui será explicada a criação do pacote Debian do E-foto de acordo com as reg
 
 \subsection{Pacotes para a criação de um pacote de acordo com a política do Debian}
 
-Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote Debian de acordo com a política do Debian que deve ser criado num ambiente \textit{Debian unstable}. 
+Primeiramente estão listados nos comandos abaixo os pacotes necessários para a criação de um pacote Debian, de acordo com a política do Debian, que deve ser criado num ambiente \textit{Debian unstable}. % o que ṕe debian unstable?
 
 \begin{lstlisting}[language=bash]
 	$ apt update
@@ -16,16 +16,19 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 
 \begin{description}
 	\item[Pacote autopkgtest] - enumera os testes do pacote e especifica suas dependências e requisitos.
-	\item[Pacote blhc] - resolve possíveis problemas de hardening (processo de proteção) na compilação de pacotes que são escritos em C ou C++.
-	\item[Pacote locales] - contém ferramentas para gerar definições de localidade de arquivos de origem, uma vez que quando um ambiente Debian unstable é criado configurações de localidade terão de ser feitas pois são reiniciadas.
+	\item[Pacote blhc] - resolve possíveis problemas de hardening %para que serve isso?
+	 (processo de proteção) na compilação de pacotes que são escritos em C ou C++.
+	\item[Pacote locales] - contém ferramentas para gerar definições de localidade de arquivos de origem, uma vez que quando um ambiente Debian unstable é criado, configurações de localidade terão de ser feitas pois são reiniciadas. %explicar melhor
 	\item[Pacote devscripts] - contém diversos scripts que facilitam a vida do empacotador, pois seguem a política do Debian.
 	\item[Pacote dh-make] - realiza a automatização de diversas etapas do empacotamento, além de gerar o diretório debian parcialmente preenchido de acordo com a política do Debian mais atual, evitando assim uma série de erros que podem ser cometidos no processo de empacotamento de algum software.
 	\item[Pacote dput-ng] - é uma ferramenta de upload de pacotes para o Debian que fornece uma interface fácil de usar para instalações de hospedagem de arquivos de pacotes Debian. Ele permite que qualquer um que trabalhe com pacotes Debian carregue seu trabalho para um serviço remoto, incluindo ftp-master do Debian, mentors.debian.net, Launchpad ou outras facilidades de hospedagem de pacotes para mantenedores de pacotes Debian.
-	\item[Pacote git-buildpackage] - ferramenta que facilita o manuseio de pacotes Debian em repositórios Git, uma vez que o git é uma forma de controle de versão tanto do software fornecido pelo upstream tanto como do próprio processo de empacotamento.
+	\item[Pacote git-buildpackage] - ferramenta que facilita o manuseio de pacotes Debian em repositórios Git, uma vez que o git é uma forma de controle de versão tanto do software fornecido pelo upstream tanto como do próprio processo de empacotamento.%é necessário no caso od efoto, já que usamos svn?
 	\item[Pacote mc] - é um gerenciador de arquivos de tela inteira em modo texto. Ele usa uma interface de dois painéis e um subshell para execução de comandos. Inclui um editor interno com destaque de sintaxe e um visualizador interno com suporte para arquivos binários.
-	\item[Pacote quilt] - é um gerenciador de patches, acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patch de mudança no empacotamento.
-	\item[Pacote spell] - é um programa de verificação ortográfica que imprime cada palavra incorreta em uma linha própria, muito bom para garantir que nenhum arquivo do pacote conterá erros ortográficos, é de muita importância que o empacotador utilize o mesmo após a finalização de cada arquivo para realizar a verificação, pois encontrará dificuldades de ter seu pacote aceito pelo Debian caso tenha erros de ortografia.
-	\item[Pacote tardiff] - compara o conteúdo de dois tarballs e relata quaisquer diferenças encontradas entre eles. Seu uso é principalmente para gerentes de lançamento que podem usá-lo como uma ferramenta de controle de qualidade para garantir que nenhum arquivo tenha sido deixado de lado acidentalmente ou adicionado por engano. TarDiff suporta tarballs compactados, estatísticas de diferenças e supressão de mudanças GNU autotool. Esse pacote é muito usado pois como pode ser visto no manual do desenvolvedor do Debian, o código fonte do upstream geralmente vem no formato .tar.gz.
+	\item[Pacote quilt] - é um gerenciador de patches, % explicar o que é um patch
+	 acompanhando as mudanças que cada um deles faz. E funciona os organizando logicamente como uma pilha e você pode aplicá-los, desaplicá-los e atualizá-los facilmente viajando para a pilha. Esse pacote só é necessário caso exista algum patch de mudança no empacotamento.
+	\item[Pacote spell] - é um programa de verificação ortográfica que imprime cada palavra incorreta em uma linha própria, muito bom para garantir que nenhum arquivo do pacote conterá erros ortográficos, é de muita importância que o empacotador utilize o mesmo após a finalização de cada arquivo para realizar a verificação, pois encontrará dificuldades de ter seu pacote aceito pelo Debian, caso tenha erros de ortografia.
+	\item[Pacote tardiff] - compara o conteúdo de dois tarballs % sempre que introduzir um termo, explicá-lo
+	 e relata quaisquer diferenças encontradas entre eles. Seu uso é principalmente para gerentes de lançamento que podem usá-lo como uma ferramenta de controle de qualidade para garantir que nenhum arquivo tenha sido deixado de lado acidentalmente ou adicionado por engano. TarDiff suporta tarballs compactados, estatísticas de diferenças e supressão de mudanças GNU autotool. Esse pacote é muito usado pois como pode ser visto no manual do desenvolvedor do Debian, o código fonte do upstream geralmente vem no formato .tar.gz.
 	\item[Pacote tree] - é um comando recursivo de listagem de diretórios que produz uma listagem de arquivos em formato de árvore. Muito usado para realizar a verificação de como ficou o empacotamento, se cada arquivo e diretório estão localizados em seu devido lugar.
 	\item[Pacote lintian] - é um sistema que disseca os pacotes Debian e relata bugs e violações de políticas. Ele contém verificações automatizadas para muitos aspectos da política do Debian, bem como algumas verificações para erros comuns. Ele usa um diretório de arquivo, denominado “laboratório”, no qual armazena informações sobre os pacotes que examina. Ele pode manter essas informações entre várias chamadas para evitar a repetição de operações caras de coleta de dados. Isso torna possível verificar o repositório Debian completo em busca de bugs, em um tempo razoável. Este pacote é útil para todas as pessoas que desejam verificar os pacotes Debian quanto à conformidade com a política Debian. Cada mantenedor do Debian deve verificar os pacotes com esta ferramenta antes de enviá-los.
 \end{description}
@@ -35,11 +38,11 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 
 \subsection{Verificação de Intenção de Empacotar}
 
-Antes de realizar o empacotamento de qualquer software para o Debian deve ser feita a verificação se não existe esse mesmo software já empacotado ou se algum outro programador já declarou a intenção de empacotá-lo. Para isso é necessário acessar o site \url{https://wnpp.debian.net/} ou o site \url{https://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=wnpp;dist=unstable} e procurar o nome do software que será empacotado, pois pacotes duplicados não são aceitos pelo Debian. Ao fazer isso com o E-foto foi encontrado o bug de intenção de empacotar \url{https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899283}, mas essa tentativa não obteve sucesso pois na época o E-foto ainda estava em Qt 4. Agora com o empacotamento da sua versão em Qt 5 deverá ser criado um outro bug para que o novo pacote seja aceito.
+Antes de realizar o empacotamento de qualquer software para o Debian deve ser feita a verificação se não existe esse mesmo software já empacotado ou se algum outro programador já declarou a intenção de empacotá-lo. Para isso é necessário acessar o site \url{https://wnpp.debian.net/} ou o site \url{https://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=wnpp;dist=unstable} e procurar o nome do software que será empacotado, pois pacotes duplicados não são aceitos pelo Debian. Ao fazer isso com o E-foto foi encontrado o bug de intenção de empacotar \url{https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899283}, mas essa tentativa não obteve sucesso pois na época o E-foto ainda estava em Qt 4. Agora com o empacotamento da sua versão em Qt 5 deverá ser criado um outro bug para que o novo pacote seja aceito. %colocar a data da tentativa
 
 \subsection{Processo de criação de uma jaula de ambiente Debian unstable}
 
-O primeiro passo para a criação de um pacote de acordo com a política do Debian é a obtenção de uma ambiente \textit{Debian unstable}, já que todo empacotamento deve ser feito em um ambiente \textit{Debian unstable} (com exceções de modificações ou correções em pacotes já publicados no \textit{Debian stable}), pois o pacote vai entrar no \textit{Debian unstable}, depois passar para \textit{experimental} até poder ser classificado e utilizado no \textit{stable}, mas para a realização desse empacotamento o empacotador não precisará usar uma versão \textit{unstable} do Debian caso não seja sua preferência, será suficiente a criação de apenas um ambiente chamado também de \textit{jaula-sid} que é justamente um diretório dentro do \textit{Debian stable} em que o desenvolvedor estará confinado e que dentro dele estará o \textit{Debian unstable} e essa jaula pode ser criada a partir dos comandos: 
+O primeiro passo para a criação de um pacote de acordo com a política do Debian é a obtenção de uma ambiente \textit{Debian unstable}, já que todo empacotamento deve ser feito em um ambiente \textit{Debian unstable} (com exceções de modificações ou correções em pacotes já publicados no \textit{Debian stable}), pois o pacote vai entrar no \textit{Debian unstable}, depois passar para \textit{experimental} até poder ser classificado e utilizado no \textit{stable}, mas para a realização desse empacotamento o empacotador não precisará usar uma versão \textit{unstable} do Debian caso não seja sua preferência, será suficiente a criação de apenas um ambiente chamado também de \textit{jaula-sid} que é justamente um diretório dentro do \textit{Debian stable} em que o desenvolvedor estará confinado e que dentro dele estará o \textit{Debian unstable} e essa jaula pode ser criada a partir dos comandos: %Parágrafo está mjuito longo, com sentenças muito longas. Dividir parágrafo em mais frases. colocando pontos e não apenas vírgulas. Explicar esse termo jaula.
 
 \begin{lstlisting}[language=bash]
 	$ apt update
@@ -57,7 +60,7 @@ O primeiro passo para a criação de um pacote de acordo com a política do Debi
 
 	\item[Comando mkdir /jaula-sid] - cria um diretório na raiz com o nome de jaula-sid. O nome \textbf{sid} vem do nome do Debian \textit{unstable}.
 	\item[Comando debootstrap sid /jaula-sid/\textit{ftp.br.debian.org/debian}] - realiza o download e a instalação de um ambiente Debian unstable no diretório jaula-sid a partir do link indicado para download da imagem.
-	\item[Comando chroot /jaula-sid/] - altera a raíz para o diretório jaula-sid tornando-o isolado ou enjaulado de forma em que ele não conseguirá acessar nada fora dele mesmo. Com isso, o empacotador ficará a partir daqui utilizando só a versão \textit{unstable} do Debian. É desse método que foi inspirado o nome jaula para o diretório de empacotamento.
+	\item[Comando chroot /jaula-sid/] - altera a raiz para o diretório jaula-sid, tornando-o isolado ou ``enjaulado'' de forma em que ele não conseguirá acessar nada fora dele mesmo. Com isso, o empacotador ficará a partir daqui utilizando só a versão \textit{unstable} do Debian. É desse método que foi inspirado o nome jaula para o diretório de empacotamento.
 	\item[Comando echo proc /proc proc defaults 0 0 >> etc/ fstab] - cria um dispositivo proc (é um diretório especial onde ficam todas as informações de depuração do \textit{kernel}, também se encontram algumas configurações que habilitam e desabilitam o suporte à alguma coisa no \textit{kernel}) que vai garantir o funcionamento correto da jaula.
 	\item[Comando wget \textit{http://bit.ly/bash-rc-txt}] - realiza o download de um arquivo de texto que contém uma série de comandos de configuração e ele deve ser colocado no \textit{/etc/bash.bashrc} pois esse diretório é lido sempre que ocorre a troca de ambiente para o Debian unstable.
 	\item[Comando cat bash-rc-txt >> /etc/bash.bashrc] - coloca o arquivo no diretório correto como explicado acima.
@@ -68,19 +71,23 @@ O conteúdo do bash-rc-txt é o seguinte:
 \begin{verbatim}
 alias ls='ls --color=auto' 
 alias tree='tree -aC' 
-alias debuildsa='dpkg-buildpackage -sa -ksua\_chave\_gpg' 
+alias debuildsa='dpkg-buildpackage -sa -ksua_chave_gpg' 
 alias uscan-check='uscan --verbose --report' 
 alias debcheckout='debcheckout -a' 
-export DEBFULLNAME="seu\_nome\_completo\_sem\_acentos/cedilha" 
-export DEBEMAIL="seu\_e-mail" export EDITOR=mcedit 
+export DEBFULLNAME="seu_nome_completo_sem_acentos/cedilha" 
+export DEBEMAIL="seu_e-mail" export EDITOR=mcedit 
 export LANG=C.UTF-8 export LANGUAGE=C.UTF-8 
-export LC\_ALL=C.UTF-8 
-export QUILT\_PATCHES=debian/patches 
-export PS1='JAULA-SID-\u@\\h:\\w\$ ' 
+export LC_ALL=C.UTF-8 
+export QUILT_PATCHES=debian/patches 
+export PS1='JAULA-SID-\u@\h:\w\$ ' 
 mount /proc 
 \end{verbatim}
 
-Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula, é importante frisar que a jaula deve ser mantida o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é setar o \textit{locales} (que define que idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt/\_BR.UTF-8) e o fuso horário (São paulo, cidade que está no centro do fuso) através do comando \textit{dpkg-configure locales tzdata}. Agora deve ser feita a configuração do \textit{lintian},e para realizar essa configuração deve ser criado o arquivo \textit{/root/.lintianrc} e colocar no mesmo as seguintes linhas: 
+Agora é o momento de realizar a instalação de alguns pacotes essenciais para o funcionamento correto da jaula. É importante frisar que a jaula deve ser mantida o mais limpa possível, ou seja, só pacotes realmente essenciais devem ser instalados, pois isso pode afetar na hora da construção e compilação do pacote. Esse procedimento é o descrito na subseção acima. O próximo passo de configuração do ambiente de trabalho é configurar o \textit{locales} (que define quais idiomas serão usados e qual o idioma padrão do ambiente de trabalho, geralmente pt\_BR.UTF-8) e o fuso horário (São Paulo, cidade que está no centro do fuso) por meio do comando
+\begin{verbatim}
+$ dpkg-configure locales tzdata
+\end{verbatim}
+Agora deve ser feita a configuração do \textit{lintian}, e para realizar essa configuração deve ser criado o arquivo \textit{/root/.lintianrc} com as seguintes linhas: 
 
 \begin{verbatim}
 display-info = yes 
@@ -89,16 +96,26 @@ display-experimental = yes
 color = auto.
 \end{verbatim}
 
-E usar o comando \textit{apt-get clean} para eliminar arquivos desnecessários e poupar espaço para iniciar o empacotamento.
+Após isso é necessário usar o comando
+\begin{lstlisting}[language=bash]
+$ apt-get clean
+\end{lstlisting}
+para eliminar arquivos desnecessários e poupar espaço para iniciar o empacotamento.
 
-Agora a próxima etapa deve ser assinar o pacote com a chave GPG do empacotador, caso seja da escolha dele, da seguinte maneira: fora da jaula, exporte as suas chaves GPG (privada e pública) com os comandos:
+Agora, a próxima etapa deve ser assinar o pacote com a chave GPG do empacotador, caso seja da escolha dele, da seguinte maneira: fora da jaula, exporte as suas chaves GPG (privada e pública) com os comandos: %como criar uma chave gpg, caso não possua?
 
 \begin{lstlisting}[language=bash]
 	$ gpg -a --export nr_da_chave > nr_da_chave.pub 
-	$ gpg -a --export-secret-keys nr\_da\_chave > nr\_da\_chave.key
+	$ gpg -a --export-secret-keys nr_da_chave > nr_da_chave.key
 \end{lstlisting} 
+%nr é número? não está explícito.
 
-Mova os arquivos para dentro da jaula \textit{unstable}, volte para a jaula com o comando \textit{chroot /jaula-sid/}, importe as chaves e remova os arquivos. Para importar use os seguintes comandos: 
+Mova os arquivos para dentro da jaula \textit{unstable}% como eu faço isso na linha de comando?
+, volte para a jaula com o comando
+\begin{lstlisting}[language=bash]
+$ chroot /jaula-sid/
+\end{lstlisting}
+, importe as chaves e remova os arquivos. Para importar use os seguintes comandos: % e para remover?
 
 \begin{lstlisting}[language=bash]
 	$ gpg --list-keys 
@@ -113,15 +130,16 @@ Agora para habilitar a chave para assinatura de pacotes o empacotador deve edita
 %nomes de pacote só podem conter letras minúsculas, números e símbolos sendo que no mínimo dois algarismos.
 Primeiramente o empacotador deve instalar o programa e testá-lo para ver se ele realmente funciona e se vale a pena empacotá-lo.
 
-Após feito isso, para começar realmente o empacotamento, é preferível a criação dentro da jaula de trabalho um diretório com o nome genérico do pacote (por exemplo \textit{pkgnome-do-programa}) através do comando:
+Após feito isso, para começar realmente o empacotamento, é preferível a criação dentro da jaula de trabalho de um diretório com o nome genérico do pacote (por exemplo \textit{pkgnome-do-programa}) com o comando: %porque não usar aqui o nome já do efoto?
 
 \begin{lstlisting}[language=bash]
 	$ mkdir pkgnome-do-programa 
 \end{lstlisting} 
 
-Dentro desse diretório a primeira etapa é obter o código fonte do \textit{upstream} que de acordo com o manual de desenvolvedores deve estar preferencialmente no formato \textit{.tar.gz} (tarball) e descompactá-lo. A política geral dos softwares do \textit{Debian} prevê que para realizar o empacotamento, o diretório raiz deve ser nomeado da seguinte forma: \textbf{nomedoprograma-numerodeversão}. Logo após isso, o empacotador deve preferencialmente verificar o licenciamento do programa e isso pode ser feito de duas formas distintas, uma é através do comando: \textit{lincensecheck} * (que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando\textit{ egrep -sriA25 '(public dom|copyright)' | less} (que toda vez em que as expressões \textit{public dom} ou \textit{copyright} forem citadas nos arquivos-fontes as 25 linhas posteriores serão mostradas, assim mostrando o que o autor do código explicitou sobre a licença). Esse procedimento deve ser feito com calma e de maneira bem minuciosa para novos pacotes pois o Debian não aceita nenhum mínimo detalhe que comprometa o fato de o código ser livre.
+Dentro desse diretório a primeira etapa é obter o código fonte do \textit{upstream} que de acordo com o manual de desenvolvedores deve estar preferencialmente no formato \textit{.tar.gz} (tarball) e descompactá-lo. A política geral de software do \textit{Debian} prevê que para realizar o empacotamento, o diretório raiz deve ser nomeado da seguinte forma: \textbf{nomedoprograma-numerodeversão}. Logo após isso, o empacotador deve preferencialmente verificar o licenciamento do programa e isso pode ser feito de duas formas distintas: uma é por meio do comando: \textit{lincensecheck} * % tudo que for comando coloque em linha separada.
+(que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando\textit{ egrep -sriA25 '(public dom|copyright)' | less} (que toda vez em que as expressões \textit{public dom} ou \textit{copyright} forem citadas nos arquivos-fontes as 25 linhas posteriores serão mostradas, assim mostrando o que o autor do código explicitou sobre a licença). Esse procedimento deve ser feito com calma e de maneira bem minuciosa para novos pacotes pois o Debian não aceita nenhum mínimo detalhe que comprometa o fato de o código ser livre.
 
-O Próximo passo será um dos mais importantes pois é a "debianização" do código fonte (a criação do diretório Debian dentro do código junto com seus arquivos necessários de acordo com a política do Debian) e isso é feito através do comando:
+O próximo passo será um dos mais importantes pois é a "debianização" do código fonte (a criação do diretório Debian dentro do código junto com seus arquivos necessários de acordo com a política do Debian) e isso é feito através do comando:
 
 \begin{lstlisting}[language=bash]
 	$ dh_make -f ../.tar.gz -c <licença> 
