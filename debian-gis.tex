@@ -81,8 +81,11 @@ O direcionamento do público de certo nicho para o derivado Debian que contém u
 
 No geral para um pacote ser aceito no \textit{Debian-GIS} as regras são basicamente as mesmas para que o pacote seja aceito no Debian, pois é aconselhável seguir o caminho normal para a aceitação de pacotes Debian em pacotes \textit{Debian-Gis}. Porém existem algumas edições no arquivo \textit{control} do repositório Debian do software empacotado que devem ser realizadas e que são específicas para o Debian-Gis, de acordo com a política oficial Debian-GIS\footnote{ \url{https://debian-gis-team.pages.debian.net/policy/policy.html}}.
 
-\subsection{Mudanças no diretório Debian/control}
-De acordo com a Política Oficial do Debian-GIS, as seguintes mudanças devem ser feitas obrigatoriamente para que o pacote seja aceito: %explicar melhor isso. O que é o debian conrol? Não copie simplesmente o texto do site. Explique isso. O que é um pacote? 
+\subsection{Mudanças no arquivo Debian/control}
+Um pacote é uma versão compactada de um software ou de uma biblioteca e são usados para a distribuição dos mesmos. Cada pacote presente em Sistemas Debian contém o arquivo control dentro de um diretório Debian e esse arquivo é preenchido com informações vitais sobre do que é formado o pacote, tanto tratando do pacote fonte quanto dos binários construídos.
+
+De acordo com a Política Oficial do Debian-GIS, as seguintes mudanças devem ser feitas obrigatoriamente em campos do arquivo Debian/control para que o pacote seja aceito. 
+
 \begin{verbatim}
 Section (Seção): Deve ser “science” para o pacote de origem.
 Priority (Prioridade): Deve ser “optional” a menos que proibido pela
@@ -94,8 +97,12 @@ Uploaders: O usuário deve se increver como um uploader quando
 tiver um interesse significativo em um pacote.
 \end{verbatim}
 
-\subsection{Busca por um sponsor}
+\subsection{Busca por um patrocinador}
 
-Para quem não é um desenvolvedor oficial do Debian, para que o pacote seja posto no Debian é necessária a busca por um sponsor que revisará esse pacote e realizará a operação de \textit{upload}. Existem vários \textit{Debian Developers} na equipe \textit{Debian-GIS}, infelizmente eles estão muito ocupados e podem não responder aos pedidos de patrocínio enviados para a Lista de Discussão dos Desenvolvedores \textit{Debian-GIS}. Portanto, é recomendado seguir o processo normal do Debian e enviar um relatório de bug de Solicitação de Patrocínio (RFS). O site \textit{Debian Mentors} é o melhor lugar para enviar seu pacote para atrair patrocinadores, o site também fornece um modelo para o seu relatório de bug RFS.
+Para quem não é um desenvolvedor oficial do Debian, para que o pacote seja posto no Debian é necessária a busca por um sponsor que revisará esse pacote e realizará a operação de \textit{upload}. Existem vários \textit{Debian Developers} na equipe \textit{Debian-GIS}, mas é comum que eles estejam ocupados e acabem não conseguindo responder a todos os pedidos de patrocínio enviados para a Lista de Discussão dos Desenvolvedores \textit{Debian-GIS}. Portanto, é recomendado seguir o processo normal do Debian que é enviar um relatório de bug de Solicitação de Patrocínio (RFS). 
 
-O relatório de bug RFS também deve ser copiado para a lista de discussão dos desenvolvedores GIS do Debian. A melhor maneira de fazer isso é usar o cabeçalho\textit{ X-Debbugs-CC} no relatório de bug. Adicione \textit{X-Debbugs-CC: pkg-grass-devel@lists.alioth.debian.org} ao cabeçalho de e-mail da mensagem ou use a opção \textbf{s} no utilitário reportbug. %explique melhor.
+O site \textit{Debian Mentors} é o melhor lugar para enviar seu pacote para atrair patrocinadores, o site também fornece um modelo para o seu relatório de bug RFS. Na política do \textit{Debian-GIS} tem o aconselhamento de como preencher alguns itens desse relatório de erro para que ele se destaque dos demais pacotes do Debian na busca pelo patrocinador.
+
+O relatório de bug RFS também deve ser copiado para a lista de discussão dos desenvolvedores GIS do Debian. A melhor maneira de fazer isso é usar o cabeçalho\textit{ X-Debbugs-CC} no relatório de bug. Adicione \textit{X-Debbugs-CC: pkg-grass-devel@lists.alioth.debian.org} ao cabeçalho de e-mail da mensagem ou use a opção \textbf{s} no utilitário reportbug.
+
+Seguindo esses passos no momento da criação do relatório de bug, que é utilizado para pedir um patrocinador para o novo pacote criado, chamará atenção de desenvolvedores que fazem parte do \textit{Debian-GIS} especificamente e eles poderão ajudar a avaliação do pacote para ver se ele é feito corretamente e digno de fazer parte do Debian e \textit{Debian-GIS}. Já que o relatorio de bug estará preenchido de acordo com o que é indicado pela política do \textit{Debian-GIS}.
