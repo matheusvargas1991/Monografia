@@ -19,19 +19,26 @@ Segundo a \textit{American Society for Photogrammetry and Remote Sensing} (ASP, 
 \subsection{Classificações da fotogrametria}
 Usando como referência o  livro \textbf{Fotogrametria Digital}, escrito por Luiz Coelho e Jorge Nunes Brito \cite{bib:livrofotogrametria}, publicado pela Editora da Universidade do Estado do Rio de Janeiro, podemos dizer que as classificações da fotogrametria são feitas de maneira histórica. Assim, a \textbf{fotogrametria pioneira} (1840-1900) se deu alguns anos após a invenção da fotografia e com a ideia de usá-la para auxílio na topografia, mas sem grandes resultados, sua utilização começou mesmo a ser difundida em 1851 para documentação de edifícios históricos, sendo criados os seus primeiros métodos de utilização, mas somente com avanços na tecnologia aérea a fotogrametria pôde realmente ser impulsionada e a dificuldade na obtenção de imagens aéreas foi reduzida. 
 
-%fazer gráfico com linha do tempo das classificações da fotogrametria
-
 A \textbf{fotogrametria analógica} (1901-1950) se deu após a primeira revolução da fotogrametria, que ocorre com a invenção do aparelho \textit{estereocomparador} que colocava aparelhos óptico mecânicos no lugar de inúmeros cálculos matemáticos, facilitando a vida dos usuários. Em 1911 foi aumentado o uso de retificadores analógicos devido à criação de um método funcional de retificação de imagens que tornou usual a utilização das fotografias para mapear extensas superfícies. A Alemanha e a Suíça tinham aparelhos que tornavam possíveis a criação de cartas topográficas de alta precisão. Esse avanço na tecnologia da fotogrametria fez com o trabalho se tornasse cada vez mais especializado, assim passou a ter necessidade de um profissional de conhecimento técnico para a realização do mesmo. Paralelamente a esse avanço ocorreram também mais fatos que ajudaram no avanço da fotogrametria em geral, o processo de foto triangulação analógica facilitou o trabalho externo, as câmaras métricas que realizavam impressões de imagens relevantes quanto às coordenadas, o que fez aumentar a precisão das medidas realizadas.
 
 A partir da evolução da tecnologia computacional, grande parte do trabalho manual e mecânico foram substituídos por tarefas feitas diretas no computador dando início a era da \textbf{fotogrametria analítica} (1951-1990). Com o auxílio da computação os cálculos em cima das imagens eram feitos pelos computadores e passou a ter a possibilidade da utilização de conjunto de imagens para serem medidas simultaneamente assim como um estudo mais completo da propagação de erros, passou a ser permitido também a utilização de câmeras não-métricas.
 
 Com o avanço tecnológico ocorreram mudanças bem significativas no quesito de obtenção de imagens, uma vez que com a criação das câmeras digitais ou até mesmo com a utilização de um escâner se pôde obter imagens digitais. Com avanços da computação os computadores passaram a processar essas imagens, com isso surgiu a era da \textbf{fotogrametria digital} (1990-atualmente). Para o processo foram criadas estações com aparelhos específicos para a fotogrametria, as chamadas estações fotogramétricas digitais, nas quais todo o processo é feito por meio de computadores, desde a sua entrada (fotos digitais ou analógicas digitalizadas) até a sua saída (dados digitais compatíveis com programas existentes).
 
-\subsection{Obtenção de imagens fotogramétricas digitais}
-Podemos obter uma imagem fotogramétrica digital de duas maneiras: por meio de escâneres (digitalização de imagens obtidas analogicamente) e por meio de câmeras fotogramétricas digitais (maneira mais direta). Com a utilização dos escâneres normalmente é possível obter a melhor configuração para a digitalização desejada, mas mesmo com essa configuração, existe a ocorrência de perda de alguma informação durante o processo de digitalização, posto que os dispositivos não possuem capacidade de digitalizar toda a complexidade da imagem. %Por que?
+As classificações da fotogrametria ao longo do tempo podem ser observadas na figura \ref{fig:linha_do_tempo}
 
-Essa responsabilidade de configurar os escâneres e seus respectivos programas para que a perda seja menor possível de maneira que a imagem ainda possa ser utilizada e mantendo a integridade da imagem original é humana, do profissional da área fotogramétrica. No caso do uso das câmeras fotogramétricas digitais ainda existe muita limitação para seu uso, pois possuem um preço muito elevado. %Isso ainda se mantém? Pesquisar 
-Ainda podem ocorrer problemas na obtenção das imagens devido ao formato das lentes das câmeras, o que também deve ser tratado para manter a integridade de uma imagem fotogramétrica digital.
+\begin{figure}[!ht]{17cm}
+	\centering
+	\includegraphics[width=12cm]{Figuras/linha_do_tempo.jpg}
+	\caption{Linha do tempo com as classificações da fotogrametria} \label{fig:linha_do_tempo}
+\end{figure}
+
+%este paragráfo foi comentado por completo pois é preciso perguntar a um professor sobre a veracidade desses fatos, pois os mesmos são de fontes talvezz ultrapassadas.
+%\subsection{Obtenção de imagens fotogramétricas digitais}
+%Podemos obter uma imagem fotogramétrica digital de duas maneiras: por meio de escâneres (digitalização de imagens obtidas %analogicamente) e por meio de câmeras fotogramétricas digitais (maneira mais direta). Com a utilização dos escâneres normalmente é %possível obter a melhor configuração para a digitalização desejada, mas mesmo com essa configuração, existe a ocorrência de perda de %alguma informação durante o processo de digitalização, posto que os dispositivos não possuem capacidade de digitalizar toda a %complexidade da imagem. %Por que?
+
+%Essa responsabilidade de configurar os escâneres e seus respectivos programas para que a perda seja menor possível de maneira que a %imagem ainda possa ser utilizada e mantendo a integridade da imagem original é humana, do profissional da área fotogramétrica. No caso %do uso das câmeras fotogramétricas digitais ainda existe muita limitação para seu uso, pois possuem um preço muito elevado. %Isso ainda se mantém? Pesquisar 
+%Ainda podem ocorrer problemas na obtenção das imagens devido ao formato das lentes das câmeras, o que também deve ser tratado para %manter a integridade de uma imagem fotogramétrica digital.
 
 \subsection{Importância e os problemas da fotogrametria digital}
 A importância da fotogrametria digital é justamente manter o avanço das ferramentas utilizadas para a fotogrametria condizente com os avanços tecnológicos, assim cada vez mais os processos ficam computadorizados e consequentemente mais rápidos e automatizados.
@@ -43,26 +50,42 @@ Apesar da tendência a automatizar todo o processo da fotogrametria, proposto pe
 
 A importância do E-foto e suas vantagens vêm desde a sua criação, pois a mesma promove um encontro entre campos diferentes da engenharia e suas especialidades, sendo eles a \textbf{engenharia de computação} e a \textbf{engenharia cartográfica}, gerando assim um conhecimento, mesmo que básico, do que pode ser feito em uma área que não é necessariamente a especialidade do aluno ou usuário. Outra vantagem vem da possibilidade de colocar em prática determinados assuntos que são vistos de forma teórica em sala de aula ou em livros em ambas as vertentes da engenharia, o que por muitas vezes não é feito durante a graduação e quando é feito, raramente é com algo de tamanha importância quanto o E-foto. O E-foto é uma estação fotogramétrica digital que tem acesso público e gratuito, de modo que a qualidade da sua criação tem grande impacto em sua utilização, e essa qualidade é exigida pelos professores criadores, já que os mesmos prezam bastante por isso, assim como a instituição de ensino como um todo.
 
-Fazer parte do projeto E-foto é uma rara oportunidade de aprender fotogrametria e programação na prática, seja na sua criação, nos testes feitos ou na própria utilização, já que oportunidades como essa são difíceis durante a graduação. E com o avanço tecnológico que fez com que a maioria dos dados cartográficos fosse feita por esse tipo de tecnologia que é a fotogrametria digital, ter um software livre e gratuito disponível para isso faz do E-foto um projeto diferenciado e muito importante. %acho que isso poderia ser colocado em outra parte, sobre sua experiência pessoal no efoto. Na motivação do projeto ou na conclusão
-
-
 \section{Instalação do E-foto}
+
 \subsection{Em Sistemas Linux}
-% faça o passa a passo para cada sistema, completo. Mantenha os itens adequados. (Em sistemas Linux) está no item 1.3.1 e o passo 1 só existe para Windows. Seja coperente.
-% instalação usando o .deb disponibilizado pelo site.
+
+\subsubsection{Passo 1 - Baixar o .deb do website}
+
 Para a instalação do e-foto em sistemas Linux, o usuário deverá fazer o \textit{download} e instalação a partir do arquivo \textit{.deb}\footnote{Disponível em  \url{http://www.efoto.eng.uerj.br/download/latest-version}}, escolhendo a opção designada para Ubuntu/Linux na aba \textbf{latest version}.
-%detalhes, detalhes. Capture telas, coloque as imagens aqui. explique passo a passo. Ainda está muito genérico.
+
+\subsubsection{Passo 2 - Instalar o pacote baixado da versão 2016.06.425}
+
+Para realizar a instalação da versão 2016.06.425 do E-foto que é a disponibilizada atualmente pelo site,  basta após realizar o download utilizar o comando:
+
+\begin{lstlisting}[language=bash]
+	$ sudo dpkg -i nome_do_pacote
+\end{lstlisting}
+
+Após isso, é necessário buscar o caminho do diretório onde o E-foto foi instalado através do terminal e utilizar o comando:
+
+\begin{lstlisting}[language=bash]
+	$ ./efoto
+\end{lstlisting}
+
+no diretório onde fica o executável, geralmente \textit{usr/bin} é o caminho correto. Seguindo esses passos o E-foto executará corretamente.
+
 \subsection{Em Sistemas Windows}
-% instalação usando o .msi disponibilizado pelo site
+
 \subsubsection{Passo 1 - Baixar o instalador do website}
-Para instalações em sistemas Windows o usuário irá instalar o E-foto por meio do download e instalação a partir do arquivo .msi e para isso será pode acessar o site \url{http://www.efoto.eng.uerj.br/download/latest-version} e realizar o download da opção designada para Windows na aba \textbf{latest version} como é mostrado na Figura \ref{fig:downmsi}. %acertar como fiz na parte do Linux
+Para instalações em sistemas Windows o usuário irá instalar o E-foto por meio do download e instalação a partir do arquivo .msi e para isso será pode acessar o site \url{http://www.efoto.eng.uerj.br/download/latest-version} e realizar o download da opção designada para Windows na aba \textbf{latest version} como é mostrado na Figura \ref{fig:downmsi}.
+
 \begin{figure}[!ht]{17cm}
 	\centering
-	\includegraphics[width=10cm]{Figuras/downmsi.jpg} %use imagens com melhor resolução, em todo o projeto
+	\includegraphics[width=10cm]{Figuras/downmsi.jpg} 
 	\caption{Realizando download do instalador do E-foto} \label{fig:downmsi}
 \end{figure}
 
-\subsubsection{Passo 2 - Realizar a instalação} %faltou a versão detalhada para Linux, com instruções na linha comando.
+\subsubsection{Passo 2 - Realizar a instalação}
 Normalmente o arquivo baixado vai para a pasta \textit{Downloads} do computador do usuário e para realizar a instalação basta dar um clique duplo nesse arquivo, clicar na opção \textit{Next}, ler e aceitar os termos do contrato, e clicar novamente em \textit{Next}.  No próximo passo o usuário deve escolher o caminho onde o E-foto será instalado. Depois o usuário deve clicar em \textit{Install} e a instalação será realizada automaticamente, conforme a Figura \ref{fig:installmsi}.
  
 \begin{figure}[!ht]{17cm}
@@ -98,15 +121,21 @@ Primeiramente, para realizar a instalação do software E-foto, o usuário pode 
 
 Com o SVN instalado e configurado, basta o usuário digitar no terminal o comando:
 \begin{lstlisting}[language=bash]
- $ svn checkout https://svn.code.sf.net/p/e-foto/code
+	$ svn checkout https://svn.code.sf.net/p/e-foto/code
 \end{lstlisting}
 
 Com a utilização desse comando o download de todo o código fonte do software E-foto será feito automaticamente. 
 
-Também é possível obter o código fonte por download direto... %completar aqui as instruções 
-    
+Também é possível obter o código fonte por download direto através do comando no terminal:
+
+\begin{lstlisting}[language=bash]
+	$ wget https://sourceforge.net/p/e-foto/code/HEAD/tree/
+\end{lstlisting}
+ 
 \subsubsection{Passo 2 - Instalar pacotes necessários à compilação}  
-Após a realização do download do código fonte do E-foto, o usuário deve ficar atento aos pacotes necessários em seu ambiente para que o E-foto possa ser instalado e ter seu funcionamento sem erros. Para a instalação dos pacotes o usuário deve buscar abrir novamente o terminal. Os pacotes necessários para instalação do e-foto são: 
+
+Após a realização do download do código fonte do E-foto, o usuário deve ficar atento aos pacotes necessários em seu ambiente para que o E-foto possa ser instalado e ter seu funcionamento sem erros. Para a instalação dos pacotes o usuário deve buscar abrir novamente o terminal. Os pacotes necessários para instalação do e-foto são:
+
 \begin{itemize}
    	\item libgdal.dev
    	\item build-essential
@@ -115,14 +144,14 @@ Após a realização do download do código fonte do E-foto, o usuário deve fic
    	\item libx11-xcb-dev
    	\item libglu1-mesa-dev
 \end{itemize}
-Cada pacote deve ser instalado com respectivamente com os seguintes comandos: %pode colocar tudo em 1 só comando	
+Cada pacote deve ser instalado com respectivamente com os seguintes comandos: 
 \begin{lstlisting}[language=bash]
 	$ sudo apt install libgdal-dev build-essential libfontconfig1 mesa-common-dev libx11-xcb-dev libglu1-mesa-dev
 \end{lstlisting}				
 	
-O pacote \textit{libgdal.dev} contém as funcionalidades da GDAL, onde GDAL é uma biblioteca de tradução para formatos geoespaciais.%o que quer dizer tradução de formatos geospaciais?
- O pacote \textit{libfontconfig1} contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e o usuário deve instalar o driver \textbf{XCB} e o \textbf{OpenGl} por meio dos pacotes \textit{mesa-common-dev}, \textit{libx11-xcb-dev} e \textit{libglu1-mesa-dev}. %explicar para que serve cada pacote
-    
+O pacote \textit{libgdal.dev} contém as funcionalidades da GDAL, onde GDAL é uma biblioteca de tradução para formatos geoespaciais. Ou seja, como pode ser visto no site\footnote{\url{https://gdal.org/programs/gdal_translate.html}} pode ser usado para converter dados raster (compostos por linhas e colucas de pixels) entre formatos diferentes, potencialmente realizando algumas operações como subconjuntos, reamostragem e redimensionamento de pixels no processo.
+O pacote \textit{libfontconfig1} contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e o usuário deve instalar o driver \textbf{XCB} e o \textbf{OpenGl} por meio dos pacotes \textit{mesa-common-dev}, \textit{libx11-xcb-dev} e \textit{libglu1-mesa-dev}. De acordo com o site\footnote{\url{https://www.debian.org/distrib/packages\#search\_packages}}, esses pacotes servem respectivamente para incluir as especificações para as extensões OpenGL específicas do Mesa, o conjunto completo de notas de versão e os arquivos de cabeçalho de desenvolvimento comuns a todos os pacotes do Mesa. Fornecer uma interface de cliente para o X Window System, também conhecido como 'Xlib', fornecendo uma API completa para as funções básicas do sistema de janelas. E fornecer o ambiente de desenvolvimento necessário para compilar programas com a biblioteca de widgets Mesa, libGLw, que serve para que aplicações baseadas em Motif embarquem contexto de desenho OpenGL, incluindo os cabeçalhos e bibliotecas estáticas para compilar programas que usam esta biblioteca.
+  
 \subsection{Passo 3 - Instalar os pacotes de instalação do Qt 5}   
 A instalação do Qt 5 via terminal deve ser feita por meio dos seguintes pacotes:
 \begin{itemize}
@@ -153,7 +182,7 @@ O comando \textit{cd diretório/} servirá para o usuário percorrer o caminho a
 \subsubsection{Passo 1 - Baixar código fonte}
 Para começar a instalação do E-foto em sistemas \textit{Windows}, o usuário deve realizar o download do código fonte do E-foto e para isso o melhor caminho é utilizar o \textit{subversion}, que no \textit{Windows} pode ser feito através de um programa chamado \textbf{TortoiseSVN}, cuja versão usada para essa explicação foi a 1.14.0, e que pode ser baixado gratuitamente por esse link \url{https://tortoisesvn.net/downloads.html} na opção mostrada na Figura \ref{fig:tortoise}. Após a instalação do \textbf{TortoiseSVN}, o usuário deve buscar no programa a opção de SVN Checkout, que pode ser encontrada ao clicar o botão direito do mouse na área de trabalho conforme, é mostrado na figura \ref{fig:checkout} e no espaço para colar uma URL (primeira opção disponível) colocar \url{https://svn.code.sf.net/p/e-foto/code}, como é visto na Figura \ref{fig:url}. Isso deve gerar o download de todo o código fonte do E-foto.
 
-Também existe a opção de baixar o código fonte diretamente do site...%completar
+Também existe a opção de baixar o código fonte diretamente do site, basta acessar o endereço \url {https://sourceforge.net/p/e-foto/code/HEAD/tree/} e clicar na opção \textbf{Download Snapshot}.
  
 \begin{figure}[!ht]{17cm}
  	\centering

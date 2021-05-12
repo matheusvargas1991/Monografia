@@ -30,7 +30,6 @@ Primeiramente estão listados nos comandos abaixo os pacotes necessários para a
 \end{description}
  
 \section{Criação do Pacote Debian do E-foto}
-%mostrar um passo a passo
 
 \subsection{Verificação de Intenção de Empacotar}
 
@@ -149,7 +148,6 @@ Agora para habilitar a chave para assinatura de pacotes o empacotador deve edita
 
 \subsection{Começando o processo de empacotamento}
 
-%nomes de pacote só podem conter letras minúsculas, números e símbolos sendo que no mínimo dois algarismos.
 Primeiramente o empacotador deve instalar o programa e testá-lo para ver se ele realmente funciona e se vale a pena empacotá-lo.
 
 Após feito isso, para começar realmente o empacotamento, é preferível a criação dentro da jaula de trabalho de um diretório com o nome genérico do pacote (por exemplo \textit{Pacote E-foto}) com o comando:
@@ -162,7 +160,7 @@ Dentro desse diretório a primeira etapa é obter o código fonte do \textit{ups
 
 \begin{lstlisting}[language=bash]
 	$ lincensecheck *
-\end{lstlisting}  % tudo que for comando coloque em linha separada.
+\end{lstlisting}
 
 (que dará como resultado a licença de cada arquivo dentro do código fonte fornecido pelo upstream) ou através do comando: 
 
