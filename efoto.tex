@@ -77,7 +77,7 @@ no diretório onde fica o executável, geralmente \textit{usr/bin} é o caminho 
 \subsection{Em Sistemas Windows}
 
 \subsubsection{Passo 1 - Baixar o instalador do website}
-Para instalações em sistemas Windows o usuário irá instalar o E-foto por meio do download e instalação a partir do arquivo .msi e para isso será pode acessar o site \url{http://www.efoto.eng.uerj.br/download/latest-version} e realizar o download da opção designada para Windows na aba \textbf{latest version} como é mostrado na Figura \ref{fig:downmsi}.
+Para instalações em sistemas Windows o usuário irá instalar o E-foto por meio do download e instalação a partir do arquivo .msi e para isso será pode acessar o site do projeto\footnote{ \url{http://www.efoto.eng.uerj.br/download/latest-version}} e realizar o download da opção designada para Windows na aba \textbf{latest version} como é mostrado na Figura \ref{fig:downmsi}.
 
 \begin{figure}[!ht]{17cm}
 	\centering
@@ -150,7 +150,11 @@ Esses pacotes devem ser instalados com o seguinte comando:
 \end{lstlisting}				
 	
 O pacote \textit{libgdal.dev} contém as funcionalidades da GDAL, onde GDAL é uma biblioteca de tradução para formatos geoespaciais. Ou seja, como pode ser visto no site\footnote{\url{https://gdal.org/programs/gdal_translate.html}} pode ser usado para converter dados raster (compostos por linhas e colucas de pixels) entre formatos diferentes, potencialmente realizando algumas operações como subconjuntos, reamostragem e redimensionamento de pixels no processo.
-O pacote \textit{libfontconfig1} contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e o usuário deve instalar o driver \textbf{XCB} e o \textbf{OpenGl} por meio dos pacotes \textit{mesa-common-dev}, \textit{libx11-xcb-dev} e \textit{libglu1-mesa-dev}. De acordo com o site\footnote{\url{https://www.debian.org/distrib/packages\#search\_packages}}, esses pacotes servem respectivamente para incluir as especificações para as extensões OpenGL específicas do Mesa, o conjunto completo de notas de versão e os arquivos de cabeçalho de desenvolvimento comuns a todos os pacotes do Mesa. Fornecer uma interface de cliente para o X Window System, também conhecido como 'Xlib', fornecendo uma API completa para as funções básicas do sistema de janelas. E fornecer o ambiente de desenvolvimento necessário para compilar programas com a biblioteca de widgets Mesa, libGLw, que serve para que aplicações baseadas em Motif embarquem contexto de desenho OpenGL, incluindo os cabeçalhos e bibliotecas estáticas para compilar programas que usam esta biblioteca.
+
+O pacote \textit{libfontconfig1} contém uma biblioteca projetada para achar fontes no sistema e selecioná-las de acordo com os requisitos especificados pelas aplicações, e o usuário deve instalar o driver \textbf{XCB} e o \textbf{OpenGl} por meio dos pacotes \textit{mesa-common-dev}, \textit{libx11-xcb-dev} e \textit{libglu1-mesa-dev}. De acordo com o site\footnote{\url{https://www.debian.org/distrib/packages\#search\_packages}}, % Este link leva a uma página de busca, não ao que está escrito aqui. Conferir todos os links para testar se realmente levam ao que teu texto indica.
+esses pacotes servem respectivamente para incluir as especificações para as extensões OpenGL específicas do Mesa, o conjunto completo de notas de versão e os arquivos de cabeçalho de desenvolvimento comuns a todos os pacotes do Mesa. Fornecer %quem fornece? Me parece que faltou sujeito nesta frase.
+ uma interface de cliente para o X Window System, também conhecido como 'Xlib', fornecendo uma API completa para as funções básicas do sistema de janelas. E %conjunçção depois de ponto? Reescrever esta frase, do jeito que está, ficou sem sentido.
+  fornecer o ambiente de desenvolvimento necessário para compilar programas com a biblioteca de widgets Mesa, libGLw, que serve para que aplicações baseadas em Motif embarquem contexto de desenho OpenGL, incluindo os cabeçalhos e bibliotecas estáticas para compilar programas que usam esta biblioteca.
   
 \subsection{Passo 3 - Instalar os pacotes de instalação do Qt 5}   
 A instalação do Qt 5 via terminal deve ser feita por meio dos seguintes pacotes:
@@ -175,12 +179,12 @@ Para compilar e executar o código do E-foto via terminal, após a realização 
    	$ ./build/bin/e-foto
 \end{lstlisting}
    
-O comando \textit{cd diretório/} servirá para o usuário percorrer o caminho até o diretório onde está o arquivo \textbf{e-foto.pro} (atualmente \textit{code/branches/e-foto-trunk-candidate}), depois o \textit{qmake} e o \textit{make} irão realizar a compilação e gerar o executável do E-foto. Por fim o último comando irá executar o programa.
+O comando \textit{cd diretório/} servirá para o usuário percorrer o caminho até o diretório onde está o arquivo \textbf{e-foto.pro} (atualmente \textit{code/branches/e-foto-trunk-candidate}), depois o \textit{qmake} e o \textit{make} irão realizar a compilação e gerar o executável do E-foto. Por fim, o último comando irá executar o programa.
 
 \subsection{Em Sistemas Windows}
 
 \subsubsection{Passo 1 - Baixar código fonte}
-Para começar a instalação do E-foto em sistemas \textit{Windows}, o usuário deve realizar o download do código fonte do E-foto e para isso o melhor caminho é utilizar o \textit{subversion}, que no \textit{Windows} pode ser feito através de um programa chamado \textbf{TortoiseSVN}, cuja versão usada para essa explicação foi a 1.14.0, e que pode ser baixado gratuitamente por esse link \url{https://tortoisesvn.net/downloads.html} na opção mostrada na Figura \ref{fig:tortoise}. Após a instalação do \textbf{TortoiseSVN}, o usuário deve buscar no programa a opção de SVN Checkout, que pode ser encontrada ao clicar o botão direito do mouse na área de trabalho conforme, é mostrado na figura \ref{fig:checkout} e no espaço para colar uma URL (primeira opção disponível) colocar \url{https://svn.code.sf.net/p/e-foto/code}, como é visto na Figura \ref{fig:url}. Isso deve gerar o download de todo o código fonte do E-foto.
+Para começar a instalação do E-foto em sistemas \textit{Windows}, o usuário deve realizar o download do código fonte do E-foto e para isso o melhor caminho é utilizar o \textit{subversion}, que no \textit{Windows} pode ser feito através de um programa chamado \textbf{TortoiseSVN}, cuja versão usada para esse tutorial foi a 1.14.0, e que pode ser baixado gratuitamente pelo site do projeto\footnote{\url{https://tortoisesvn.net/downloads.html}} na opção mostrada na Figura \ref{fig:tortoise}. Após a instalação do \textbf{TortoiseSVN}, o usuário deve buscar no programa a opção de SVN Checkout, que pode ser encontrada ao clicar o botão direito do mouse na área de trabalho conforme é mostrado na figura \ref{fig:checkout} e no espaço para colar uma URL (primeira opção disponível) colocar \url{https://svn.code.sf.net/p/e-foto/code}, como é visto na Figura \ref{fig:url}. Isso deve gerar o download de todo o código fonte do E-foto.
 
 Também existe a opção de baixar o código fonte diretamente do site, basta acessar o endereço \url {https://sourceforge.net/p/e-foto/code/HEAD/tree/} e clicar na opção \textbf{Download Snapshot}.
  
@@ -203,7 +207,7 @@ Também existe a opção de baixar o código fonte diretamente do site, basta ac
 \end{figure}
  
 \subsubsection{Passo 2 - Download dos pacotes binários da Gdal no Windows} 
-O próximo passo é o download dos pacotes binários da Gdal no \textit{Windows}. Isso pode ser realizado diretamente pelo link  \url{https://repo.msys2.org/distrib/x86\_64/msys2-x86\_64-20200720.exe}, que realizará o download do MSYS. Após a conclusão do download e da instalação do MSYS (que deve ser feita no drive C, que normalmente é o \textit{default}) o usuário deve executar \textbf{mSYS}, o que vai abrir o terminal do próprio MSYS que contém uma versão portada do gerenciador de pacotes \textit{Pacman} conforme pode ser visto na Figura \ref{fig:terminalgdal}. Nessa última versão do \textit{Pacman} deve ser digitado no terminal o comando:
+O próximo passo é o download dos pacotes binários da Gdal no \textit{Windows}. Isso pode ser realizado diretamente pelo link  \url{https://repo.msys2.org/distrib/x86\_64/msys2-x86\_64-20200720.exe}, que realizará o download do MSYS. Após a conclusão do download e da instalação do MSYS (que deve ser feita no drive C, que normalmente é o \textit{default}) o usuário deve executar \textbf{mSYS}, o que vai abrir o terminal do próprio MSYS que contém uma versão portada do gerenciador de pacotes \textit{Pacman}, conforme pode ser visto na Figura \ref{fig:terminalgdal}. Nessa última versão do \textit{Pacman} deve ser digitado no terminal o comando:
 
 \begin{lstlisting}[language=bash]
 $ pacman -Syuu

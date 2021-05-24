@@ -286,7 +286,7 @@ Após essa etapa o empacotador deve verificar novamente todos os arquivos do dir
 \begin{lstlisting}[language=bash]
 	$ cowbuilder create
 	$ cowbuilder update
-	$cowbuilder build arquivo.dsc
+	$ cowbuilder build arquivo.dsc
 \end{lstlisting} 
 
 Esses comandos vão criar o ambiente \textit{Debian unstable} limpo, atualizar o mesmo e testar a construção do pacote nesse ambiente respectivamente. Esse teste é de total importância pois durante o processo de empacotamento pode ser gerada uma poluição na jaula que acabará influenciando no resultado final, e com esse teste em um ambiente limpo ocorre uma simulação de como o pacote será construído e testado nos servidores do Debian quando for feito seu \textit{upload}.
